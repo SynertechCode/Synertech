@@ -51,9 +51,9 @@
         required
         #budgetField="ngModel"
       >
-        <option value="from-500"> &lt; 500$</option>
-        <option value="from-1000">500$-1000$</option>
-        <option value="from-1000"> &gt; 1000$</option>
+        <option value="500"> &lt; 500$</option>
+        <option value="500-1000">500$-1000$</option>
+        <option value="1000"> &gt; 1000$</option>
       </select>
       <div *ngIf="budgetField.invalid && budgetField.touched" class="error">
         Budget selection is required.
