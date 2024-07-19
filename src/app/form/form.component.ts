@@ -39,7 +39,7 @@ export class FormComponent {
 
     console.log('Data being sent to the server:', postData);
 
-    this.http.post<{ message: string }>('https://synertech-back.onrender.com', postData, {
+    this.http.post<{ message: string }>(`http://localhost:3000`, postData, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -67,7 +67,7 @@ export class FormComponent {
   resetForm(): void {
     this.username = '';
     this.email = '';
-    this.select = 'from-500'; // Reset to default value
+    this.select = '500'; // Reset to default value
     this.project = '';
   }
 }
