@@ -39,7 +39,7 @@ export class FormComponent {
 
     console.log('Data being sent to the server:', postData);
 
-    this.http.post<{ message: string }>('http://localhost:3000/syner/users', postData, {
+    this.http.post<{ message: string }>('https://synertech-back.onrender.com/syner/users', postData, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
