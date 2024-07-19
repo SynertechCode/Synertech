@@ -10,7 +10,7 @@ import { of, switchMap } from 'rxjs';
 export class FormComponent {
   username: string = '';
   email: string = '';
-  select: string = 'from-500'; // Default value
+  select: string = '500'; // Default value
   project: string = '';
 
   @Input() isOpen: boolean = false;
