@@ -20,7 +20,7 @@
 padding: 32px;
   position: relative;
   width: 1051px;
-  height: 931px;
+  height: 901px;
   border-radius: 16px;
   background: #D4D0C2;
   display: flex;
@@ -137,7 +137,7 @@ height: 136px;
 flex-shrink: 0;
 background-color: #FCFF62;
 right: 100px;
-top: 780px;
+top: 760px;
 transition: all 0.3s ease;
 }
 
@@ -171,7 +171,7 @@ line-height: 120%; /* 24px */
 
 @media screen and (min-width: 1512px) and (max-width: 1919px) {
 .form-menu {
-  height: 770px;
+  height: 740px;
   padding: 28px;
   gap: 0;
 }
@@ -180,8 +180,29 @@ line-height: 120%; /* 24px */
   width: 100px;
   height: 100px;
   right: 50px;
-  top: 660px;
+  top: 630px;
 }
+
+.form-menu-title {
+  margin-bottom: 0;
+  font-size: 36px;
+}
+
+.form-title {
+  margin-bottom: 0;
+}
+
+.select-form {
+  height: 40px;
+  width: 160px;
+  padding: 0;
+  padding-left: 12px;
+}
+
+.textarea-form {
+  height: 130px;
+}
+
 }
 
 .form-menu-title {
@@ -222,7 +243,7 @@ line-height: 120%; /* 24px */
     margin-top: 0;
   }
   .form-button-send {
-    top: 680px;
+    top: 710px;
     width: 100px;
     height: 100px;
   }
@@ -285,7 +306,7 @@ line-height: 120%; /* 24px */
     height: 103px;
     flex-shrink: 0;
     right: 34px;
-    top : 552px;
+    top : 502px;
   }
   .textarea-form {
     height: 80px;
