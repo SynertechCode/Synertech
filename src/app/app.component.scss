@@ -628,10 +628,10 @@ transition: color 0.5s;
   }
   .button-get-started {
       right: 470px;
-      top: 80px;
+      top: 50px;
   }
   .button-get-started:hover {
-      top: 20px;
+      top: 0px;
   }
   .phones-img {
     height: 709px;
@@ -1300,6 +1300,8 @@ background: #FBFF36;
   .services-title {
       font-size: 110px;
       margin-top: 100px;
+      margin-bottom: 30px;
+      line-height: normal;
   }
   .services-cards-list {
       gap: 32px;
@@ -1317,18 +1319,18 @@ height: 442px;
       font-size: 16px;
   }
   .cards-img {
-      width: 270px;
-      height: 230px;
+      width: 290px;
+      height: 290px;
   }
   .cards-img-figure {
-      width: 320px;
-      height: 130px;
-      margin-left: 30px;
+      width: 390px;
+      height: 160px;
+      margin-left: -10px;
   }
   .cards-img-snail {
-      width: 300px;
-      height: 140px;
-      margin-left: 40px;
+      width: 340px;
+      height: 180px;
+      margin-left: 20px;
       margin-top: 30px;
   }
   .button-get-started-card-design {
@@ -1674,6 +1676,8 @@ text-transform: uppercase;
   }
   .portfolio-title {
       font-size: 110px;
+      line-height: normal;
+      margin-bottom: 30px;
   }
   .swiper {
   }
@@ -1975,6 +1979,8 @@ cursor: pointer;
 @media screen and (min-width: 1512px) and (max-width: 1919px) {
   .title-connect {
       font-size: 110px;
+      line-height: normal;
+      margin-bottom: 30px;
   }
   .connect-text-interest {
       padding-left: 0;
