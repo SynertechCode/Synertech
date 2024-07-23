@@ -803,10 +803,10 @@ flex-shrink: 0;
   flex-shrink: 0;
   font-size: 16px;
   right: 300px;
-  top: 70px;
+  top: 40px;
 }
 .button-get-started:hover {
-  top: 20px;
+  top: 0px;
 }
 .block-phones {
   padding: 0;
@@ -1320,11 +1320,13 @@ height: 442px;
   .cards-img {
       width: 290px;
       height: 290px;
+      margin-top: -50px;
   }
   .cards-img-figure {
       width: 390px;
       height: 160px;
       margin-left: -10px;
+      margin-top: 14px;
   }
   .cards-img-snail {
       width: 340px;
@@ -1334,13 +1336,14 @@ height: 442px;
   }
   .button-get-started-card-design {
       font-size: 30px;
-      margin-top: 42px;
+      height: 60px;
   }
   .snail-btn {
       font-size: 30px;
-      margin-top: 58px;
+      margin-top: 38px;
   }
   .hover-btn-card {
+    height: 80px;
       font-size: 30px;
       padding: 10px 14px;
       transition: all 0.4s ease-out;
@@ -1349,7 +1352,7 @@ height: 442px;
       display: flex;
   width: 340px;
   font-size: 30px;
-  height: 74px;
+  height: 80px;
   justify-content: center;
   align-items: center;
   gap: 30px;
@@ -1366,6 +1369,9 @@ height: 442px;
   .arrow {
       width: 36px;
       height: 27px;
+  }
+  .button-get-started-card {
+    height: 80px;
   }
 }
 
@@ -1934,14 +1940,10 @@ cursor: pointer;
   }
 }
 
-.img-click-img:hover {
-  transform: scale(1.1);
-}
-
 .img-click-text {
   color: #fff;
   font-family: "Nekst";
-  font-size: 40px;
+  font-size: 50px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -1965,7 +1967,7 @@ cursor: pointer;
 }
 
 .get-started-text {
-  color: var(--white, #FFF);
+  color:  #FFF;
   font-family: Nekst;
   font-size: 25px;
   font-style: normal;
