@@ -300,21 +300,20 @@ margin-right: 16px;
 .main-text-building {
   color: #000;
   font-family: "Nekst";
-  font-size: 24px;
+  font-size: 38px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 28.8px */
 
 margin-top: 12px;
-width: 564px;
-
+width: 700px;
 }
 
 
 .button-get-started {
   position: absolute;
   right: 660px;
-  top: 24px;
+  top: 64px;
 
   color: var(--black, #000);
 text-align: center;
@@ -340,7 +339,7 @@ transition: all 0.3s ease;
 }
 
 .button-get-started:hover {
-  top: -24px;
+  top: 0px;
 }
 
 .block-phones {
@@ -1157,7 +1156,7 @@ line-height: normal;
   font-size: 120px;
   font-style: normal;
   font-weight: 500;
-  line-height: 264.96px;
+  margin-bottom: 30px;
   text-transform: uppercase;
 }
 
@@ -1622,7 +1621,7 @@ font-family: Nekst;
 font-size: 120px;
 font-style: normal;
 font-weight: 600;
-line-height: 264.96px; /* 220.8% */
+margin-bottom: 30px;
 text-transform: uppercase;
 }
 
@@ -1777,7 +1776,7 @@ font-family: Nekst;
 font-size: 120px;
 font-style: normal;
 font-weight: 600;
-line-height: 264.96px;
+margin-bottom: 30px;
 text-transform: uppercase;
 }
 
