@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, switchMap } from 'rxjs';
 
-import { environment } from '../../../environment/environment';
+import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'app-form',
@@ -41,7 +41,7 @@ export class FormComponent {
 
     console.log('Data being sent to the server:', postData);
 
-    this.http.post<{ message: string }>(environment.apiUrl, postData, {
+    this.http.post<{ message: string }>("https://synertech-back.onrender.com", postData, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
