@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, switchMap } from 'rxjs';
 
-import { environment } from '../../environment/environment';
 
 @Component({
   selector: 'app-form',
