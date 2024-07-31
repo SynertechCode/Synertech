@@ -2,6 +2,11 @@
   display: none;
 }
 
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+
 .container {
   margin: 0 auto;
   padding-bottom: 1px;
