@@ -9,7 +9,6 @@ import { SwiperOptions, Swiper } from 'swiper';
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-
   setActiveSection(section: string) {
     this.currentSection = section;
     this.scrollToSection(section);
@@ -18,6 +17,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   isBrowser: boolean;
   swiperConfig: SwiperOptions = {};
   portfolioSwiperConfig: SwiperOptions = {};
+  swiperConfigMobile: SwiperOptions = {};
   currentSection: string = 'home';
   activeSlideIndex: number = 0;
   @ViewChild('swiper') swiper: Swiper | undefined;
@@ -66,8 +66,21 @@ export class AppComponent implements OnInit, AfterViewInit {
           }
         },
       };
+
+      this.swiperConfigMobile = {
+        slidesPerView: 3,
+        spaceBetween: 0,
+        pagination: { clickable: true },
+        on: {
+          slideChange: () => {
+            if (this.isBrowser && this.swiper) {
+              this.activeSlideIndex = this.swiper.activeIndex || 0;
+            }
+          },
+        },
+      }
     }
-  }
+};
 
   ngAfterViewInit() {
     if (this.isBrowser) {
