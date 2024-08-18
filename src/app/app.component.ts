@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentSection: string = 'home';
   activeSlideIndex: number = 0;
   @ViewChild('swiper') swiper: Swiper | undefined;
+  @ViewChild('navigationSwiper') navigationSwiper: any;
 
   private aboutUsSection: HTMLElement | null = null;
   private aboutUsTexts: NodeListOf<HTMLElement> | null = null;
@@ -77,8 +78,13 @@ export class AppComponent implements OnInit, AfterViewInit {
               this.activeSlideIndex = this.swiper.activeIndex || 0;
             }
           },
-        },
-      }
+          touchEnd: () => {
+            if (this.currentSection === 'services') {
+              this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
+            }
+          },
+        }
+      };
     }
 };
 
@@ -180,6 +186,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   isOpen: boolean = false;
 
   toggleForm() {
-    this.isOpen = !this.isOpen; // змінено на toggle значення
+    this.isOpen = !this.isOpen;
   }
 }
