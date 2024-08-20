@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, Inject } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
-import Matter, { Bodies, Engine, Render, World, Mouse, MouseConstraint, Runner, Body } from 'matter-js';
-import { text } from 'stream/consumers';
+import { Bodies, Engine, Render, World, Mouse, MouseConstraint, Runner } from 'matter-js';
 
 @Component({
   selector: 'app-matter',
