@@ -8,7 +8,6 @@
 }
 
 .matter-container {
-  height: 440px;
   position: relative;
   overflow: hidden;
 }
@@ -64,13 +63,12 @@
 #matterCanvas {
   width: 100% !important;
   height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 
-canvas {
-  height: 440px;
-  display: none;
-}
 
 @media screen and (min-width: 1512px) and (max-width: 1919px) {
   .matter {

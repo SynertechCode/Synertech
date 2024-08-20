@@ -1,187 +1,103 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, AfterViewInit, Inject } from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
-import Matter from 'matter-js';
+import Matter, { Bodies, Engine, Render, World, Mouse, MouseConstraint, Runner, Body } from 'matter-js';
+import { text } from 'stream/consumers';
 
 @Component({
   selector: 'app-matter',
   templateUrl: './matter.component.html',
   styleUrls: ['./matter.component.scss']
 })
-export class MatterComponent implements OnInit {
+export class MatterComponent implements AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  ngOnInit() {
-    const Engine = Matter.Engine,
-          Render = Matter.Render,
-          Runner = Matter.Runner,
-          Body = Matter.Body,
-          Composite = Matter.Composite,
-          Bodies = Matter.Bodies,
-          MouseConstraint = Matter.MouseConstraint,
-          Mouse = Matter.Mouse;
-
+  ngAfterViewInit() {
     const engine = Engine.create();
-    const world = engine.world;
-    engine.world.gravity.y = 1;
+    const runner = Runner.create(); // Створюємо Runner
 
-    let containerWidth = window.innerWidth * 1.01;
-    let containerHeight = 439;
+    const matterCanvas = document.querySelector('#matterCanvas') as HTMLCanvasElement;
 
-    if (window.innerWidth < 1919 && window.innerWidth > 1511) {
-        containerHeight = 400;
-    }
+    if (matterCanvas) {
+      // Встановлюємо колір фону через JavaScript
+      const context = matterCanvas.getContext('2d');
+      if (context) {
+        context.fillStyle = '#D4D0C2'; // Ваш колір фону
+        context.fillRect(0, 0, matterCanvas.width, matterCanvas.height);
+      }
 
-    if (window.innerWidth < 1511 && window.innerWidth > 833) {
-        containerHeight = 400;
-    }
+      const width = matterCanvas.clientWidth;
+      const height = matterCanvas.clientHeight;
 
-    if (window.innerWidth < 833) {
-        containerHeight = 450;
-    }
-
-    const matterContainer = document.querySelector('.matter') as HTMLElement;
-
-    const render = Render.create({
-        element: matterContainer,
+      const render = Render.create({
+        element: document.querySelector('#matterCanvasContainer') as HTMLElement,
         engine: engine,
-        canvas: document.getElementById('matterCanvas') as HTMLCanvasElement,
+        canvas: matterCanvas, // Вказуємо сам canvas для рендеру
         options: {
-            width: containerWidth,
-            height: containerHeight,
-            wireframes: false,
-            background: 'transparent'
+          width: width,
+          height: height,
+          wireframes: false, // Вимикаємо каркасний режим для відображення повністю заповнених тіл
+          background: '#D4D0C2', // Встановлюємо колір фону
         }
-    });
+      });
 
-    const runner = Runner.create();
-    Runner.run(runner, engine);
+      // Додаємо кілька статичних та динамічних тіл
+      const ground = Bodies.rectangle(width / 2, height - 20, width, 0, { isStatic: true });
+      World.add(engine.world, ground);
 
-    const draggableElements = Array.from(document.querySelectorAll('.draggable')) as HTMLElement[];
-    const draggableBodies: { body: Matter.Body, element: HTMLElement }[] = [];
+      const elements = [
+        { id: 'body1', x: 150, y: 100, width: 300, height: 70, },
+        { id: 'body2', x: 450, y: 100, width: 300, height: 70, },
+        { id: 'body1', x: 750, y: 100, width: 300, height: 70, },
+        { id: 'body2', x: 150, y: 200, width: 300, height: 70, },
+        { id: 'body1', x: 450, y: 200, width: 300, height: 70, },
+        { id: 'body2', x: 750, y: 200, width: 300, height: 70, },
+        { id: 'body1', x: 150, y: 300, width: 300, height: 70, },
+        { id: 'body2', x: 450, y: 300, width: 300, height: 70, },
+        { id: 'body1', x: 750, y: 300, width: 300, height: 70, },
+      ];
 
-    draggableElements.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      const randomX = Math.random() * (containerWidth - rect.width);
-      const randomY = Math.random() * (containerHeight - rect.height);
+      elements.forEach(element => {
+        const borderThickness = 50;
 
-      const body = Bodies.rectangle(
-          randomX,
-          randomY,
-          rect.width,
-          rect.height,
-          {
-              isStatic: false,
-              restitution: 0.9, // Додаємо властивість підстрибування
-              render: {
-                  fillStyle: el.classList.contains('background-1') ? '#000' : 'transparent',
-                  strokeStyle: '#000',
-                  lineWidth: 1
-              }
+        // Створення основного тіла
+        const body = Bodies.rectangle(element.x, element.y, element.width, element.height, {
+          render: {
+            fillStyle: element.id === 'body1' ? '#fbff36' : '#000',
+            strokeStyle: '#000',
+            lineWidth: 1
           }
-      );
-
-      setElementToAbsolute(el, randomX, randomY);
-
-      el.addEventListener('mousedown', (event) => startDrag(event, el, body, containerWidth, containerHeight));
-      el.addEventListener('touchstart', (event) => startDrag(event, el, body, containerWidth, containerHeight), { passive: false });
-
-      Composite.add(world, body);
-      draggableBodies.push({ body: body, element: el });
-    });
-
-    const ground = Bodies.rectangle(containerWidth / 2, containerHeight + 30, containerWidth, 60, { isStatic: true });
-    const leftWall = Bodies.rectangle(-30, containerHeight / 2, 60, containerHeight, { isStatic: true });
-    const rightWall = Bodies.rectangle(containerWidth + 30, containerHeight / 2, 60, containerHeight, { isStatic: true });
-    const ceiling = Bodies.rectangle(containerWidth / 2, -30, containerWidth, 60, { isStatic: true });
-
-    Composite.add(world, [ground, leftWall, rightWall, ceiling]);
-
-    const mouse = Mouse.create(render.canvas),
-          mouseConstraint = MouseConstraint.create(engine, {
-              mouse: mouse,
-              constraint: {
-                  stiffness: 0.2,
-                  render: {
-                      visible: false
-                  }
-              }
-          });
-
-    Composite.add(world, mouseConstraint);
-    render.mouse = mouse;
-
-    Matter.Events.on(engine, 'afterUpdate', () => {
-        draggableBodies.forEach(item => {
-            const body = item.body;
-            const el = item.element;
-
-            el.style.left = `${body.position.x - el.offsetWidth / 2}px`;
-            el.style.top = `${body.position.y - el.offsetHeight / 2}px`;
-            el.style.transform = `rotate(${body.angle}rad)`;
         });
-    });
+        World.add(engine.world, body);
+      });
 
-    function startDrag(event: MouseEvent | TouchEvent, el: HTMLElement, body: Matter.Body, containerWidth: number, containerHeight: number) {
-        event.preventDefault();
-        const clientX = ('touches' in event) ? event.touches[0].clientX : event.clientX;
-        const clientY = ('touches' in event) ? event.touches[0].clientY : event.clientY;
+      
 
-        el.style.position = 'absolute';
-        el.style.userSelect = 'none';
-        el.style.cursor = 'pointer';
-        el.style.zIndex = '1000';
+      const mouse = Mouse.create(render.canvas);
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse: mouse,
+        constraint: {
+          stiffness: 0.2,
+          render: {
+            visible: false
+          }
+        }
+      });
 
-        (el as any).isDragging = true;
-        body.isStatic = true;
-        (el as any).dragStartX = clientX;
-        (el as any).dragStartY = clientY;
-        (el as any).bodyStartX = body.position.x;
-        (el as any).bodyStartY = body.position.y;
+      World.add(engine.world, mouseConstraint);
 
-        const onMouseMove = (moveEvent: MouseEvent) => moveElement(moveEvent, el, body, containerWidth, containerHeight);
-        const onTouchMove = (moveEvent: TouchEvent) => moveElement(moveEvent, el, body, containerWidth, containerHeight);
+      // Додаємо обмеження меж для кожного тіла
+      World.add(engine.world, [
+        Bodies.rectangle(width / 2, height + 30, width, 60, { isStatic: true }), // Нижня межа
+        Bodies.rectangle(width / 2, -30, width, 60, { isStatic: true }), // Верхня межа
+        Bodies.rectangle(-30, height / 2, 60, height, { isStatic: true }), // Ліва межа
+        Bodies.rectangle(width + 30, height / 2, 60, height, { isStatic: true }) // Права межа
+      ]);
 
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('touchmove', onTouchMove, { passive: false });
-
-        const endDrag = () => {
-            if ((el as any).isDragging) {
-                el.style.left = `${body.position.x - el.offsetWidth / 2}px`;
-                el.style.top = `${body.position.y - el.offsetHeight / 2}px`;
-                el.style.zIndex = '';
-                (el as any).isDragging = false;
-                body.isStatic = false;
-
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('touchmove', onTouchMove);
-            }
-        };
-
-        document.addEventListener('mouseup', endDrag, { once: true });
-        document.addEventListener('touchend', endDrag, { once: true });
-    }
-
-    function moveElement(event: MouseEvent | TouchEvent, el: HTMLElement, body: Matter.Body, containerWidth: number, containerHeight: number) {
-        const clientX = ('touches' in event) ? event.touches[0].clientX : event.clientX;
-        const clientY = ('touches' in event) ? event.touches[0].clientY : event.clientY;
-
-        const deltaX = clientX - (el as any).dragStartX;
-        const deltaY = clientY - (el as any).dragStartY;
-        let newX = (el as any).bodyStartX + deltaX;
-        let newY = (el as any).bodyStartY + deltaY;
-
-        newX = Math.max(Math.min(newX, containerWidth - el.offsetWidth), 0);
-        newY = Math.max(Math.min(newY, containerHeight - el.offsetHeight), 0);
-
-        Body.setPosition(body, { x: newX, y: newY });
-    }
-
-    function setElementToAbsolute(el: HTMLElement, randomX: number, randomY: number) {
-        el.style.position = 'absolute';
-        el.style.left = `${randomX}px`;
-        el.style.top = `${randomY}px`;
-        el.style.userSelect = 'none';
-        el.style.cursor = 'pointer';
+      // Запускаємо рушій за допомогою Runner
+      Runner.run(runner, engine);
+      Render.run(render);
+    } else {
+      console.error("Canvas element not found or is not an HTMLCanvasElement");
     }
   }
 }

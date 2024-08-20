@@ -78,11 +78,6 @@ export class AppComponent implements OnInit, AfterViewInit {
               this.activeSlideIndex = this.swiper.activeIndex || 0;
             }
           },
-          touchEnd: () => {
-            if (this.currentSection === 'services') {
-              this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
-            }
-          },
         }
       };
     }
@@ -119,6 +114,10 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
 
       this.currentSection = current;
+
+        if (this.currentSection === 'services') {
+          this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
+        }
     }
   }
 
