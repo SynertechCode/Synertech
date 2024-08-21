@@ -57,7 +57,7 @@ export class MatterComponent implements AfterViewInit {
         elementHeight = 36;
         chamferRadius = 24;
       } else if (width >= 320 && width <= 833) {
-        elementWidth = 122;
+        elementWidth = 142;
         elementHeight = 40;
         chamferRadius = 18;
       } else {
