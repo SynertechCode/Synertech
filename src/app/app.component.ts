@@ -115,9 +115,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       this.currentSection = current;
 
-        if (this.currentSection === 'services') {
-          this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
-        }
+      if (this.currentSection === 'services') {
+        this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
+      } else if (this.currentSection === 'hello') {
+        this.navigationSwiper.swiperRef.slideTo(0);
+      }
     }
   }
 
