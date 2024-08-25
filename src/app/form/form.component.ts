@@ -11,7 +11,7 @@ import { of, switchMap } from 'rxjs';
 export class FormComponent {
   username: string = '';
   email: string = '';
-  select: string = ''; // Default value
+  select: string = 'select'; // Default value
   project: string = '';
 
   @Input() isOpen: boolean = false;
