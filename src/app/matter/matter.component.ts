@@ -37,6 +37,7 @@ export class MatterComponent implements AfterViewInit {
           height: height,
           wireframes: false,
           background: '#D4D0C2',
+          pixelRatio: window.devicePixelRatio || 1,
         }
       });
 
@@ -50,12 +51,12 @@ export class MatterComponent implements AfterViewInit {
 
       if (width >= 1512 && width <= 1919) {
         elementWidth = 237;
-        elementHeight = 60;
-        chamferRadius = 36;
-      } else if (width >= 834 && width <= 1511) {
-        elementWidth = 141;
-        elementHeight = 36;
+        elementHeight = 50;
         chamferRadius = 24;
+      } else if (width >= 834 && width <= 1511) {
+        elementWidth = 151;
+        elementHeight = 40;
+        chamferRadius = 20;
       } else if (width >= 320 && width <= 833) {
         elementWidth = 142;
         elementHeight = 40;
@@ -139,7 +140,7 @@ export class MatterComponent implements AfterViewInit {
       World.add(this.engine.world, mouseConstraint);
 
       World.add(this.engine.world, [
-        Bodies.rectangle(width / 2, height + 30, width, 60, { isStatic: true }),
+        Bodies.rectangle(width / 2, height + 30, width, 58, { isStatic: true }),
         Bodies.rectangle(width / 2, -30, width, 60, { isStatic: true }),
         Bodies.rectangle(-30, height / 2, 60, height, { isStatic: true }),
         Bodies.rectangle(width + 30, height / 2, 60, height, { isStatic: true })
