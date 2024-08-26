@@ -42,7 +42,7 @@
         <h1 class="title">synertech</h1>
         <h2 class="subtitle">let` s build something</h2>
         <h2 class="subtitle">
-          <img height="925" class="icon-black-circle" src="../assets/black-circle.png" alt="Black-circle">
+          <img height="925" class="icon-black-circle" src="../assets/black-circle.svg" alt="Black-circle">
           <span class="great"> <span class="great-subtitle">great</span> <span class="together">together</span> </span>
         </h2>
         <img class="logo-img" src="../assets/logo.png" alt="Logo">
@@ -55,23 +55,22 @@
       <!-- HELLO -->
       <section id="hello" class="block-phones">
         <div class="phones-container">
-          <video src="../assets/video-syner.mp4" class="phones-img" autoplay loop muted playsinline controlling="download fullscreen noremoteplayback"></video>
+          <video #videoElement src="../assets/video-syner.mp4" class="phones-img" autoplay loop muted playsinline></video>
         </div>
       </section>
-      <section class="about-us-section">
-        <script src="../scroll down text/scroll-down-text.js"></script>
+      <section id="about-us" class="about-us-section">
         <div class="about-us">
-          <div class="ideas-ignite-block">Ideas Ignite</div>
-          <div class="black-circle"></div>
-          <div class="creativity-block">Creativity</div>
-          <div class="takes-flight-fueling-innovation-block">Takes Flight. Fueling Innovation,</div>
-          <div class="crafting-dreams">Crafting Dreams.</div>
-          <div class="where-thoughts-soar">Where Thoughts Soar,</div>
-          <div class="while-block-first"></div>
-          <div class="and-imagination-creates">and Imagination Creates -</div>
-          <div class="limitless-horizons">Limitless Horizons. </div>
-          <div class="while-block-second"></div>
-          <div class="unleash-your-potential">Unleash Your Potential with Us.</div>
+          <div class="ideas-ignite-block" *ngIf="true" @slideInLeft>Ideas Ignite</div>
+          <div class="black-circle" *ngIf="true" @slideInLeft></div>
+          <div class="creativity-block" *ngIf="true" @slideInLeft>Creativity</div>
+          <div class="takes-flight-fueling-innovation-block" *ngIf="true" @slideInRight>Takes Flight. Fueling Innovation,</div>
+          <div class="crafting-dreams" *ngIf="true" @slideInLeft>Crafting Dreams.</div>
+          <div class="where-thoughts-soar" *ngIf="true" @slideInLeft>Where Thoughts Soar,</div>
+          <div class="while-block-first" *ngIf="true" @slideInRight></div>
+          <div class="and-imagination-creates" *ngIf="true" @slideInRight>and Imagination Creates -</div>
+          <div class="limitless-horizons" *ngIf="true" @slideInLeft>Limitless Horizons. </div>
+          <div class="while-block-second" *ngIf="true" @slideInRight></div>
+          <div class="unleash-your-potential" *ngIf="true" @slideInRight>Unleash Your Potential with Us.</div>
         </div>
       </section>
       <!-- SERVICES -->

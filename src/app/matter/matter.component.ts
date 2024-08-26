@@ -97,7 +97,7 @@ export class MatterComponent implements AfterViewInit {
         const body = Bodies.rectangle(element.x, element.y, element.width, element.height, {
           chamfer: { radius: chamferRadius }, // Використовуємо адаптований chamfer.radius
           render: {
-            fillStyle: element.id === 'body1' ? '#fbff36' : '#000',
+            fillStyle: element.id === 'body1' ? '#D4D0C2' : '#000',
             strokeStyle: '#000',
             lineWidth: 1,
           }
@@ -112,8 +112,8 @@ export class MatterComponent implements AfterViewInit {
           context.translate(body.position.x, body.position.y);
           context.rotate(body.angle); // Повертаємо контекст згідно з кутом тіла
 
-          context.font = '20px Arial';
-          context.fillStyle = element.id === 'body1' ? '#000' : '#fff';
+          context.font = '20px Nekst';
+          context.fillStyle = element.id === 'body1' ? '#000' : '#FBFF36';
           context.textAlign = 'center';
           context.textBaseline = 'middle';
           context.fillText(
