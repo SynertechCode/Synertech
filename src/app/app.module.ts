@@ -8,6 +8,7 @@ import { RouterOutlet } from "@angular/router";
 import { MatterModule } from "./matter/matter.module";
 import { FormsModule } from "@angular/forms";
 import { FormComponent } from "./form/form.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { FormComponent } from "./form/form.component";
     MatterModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule
   ],
   exports: [AppComponent,FormComponent],
   declarations: [AppComponent,FormComponent],

@@ -608,6 +608,39 @@ transition: color 0.5s;
   color: #D4D0C2;
 }
 
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slideInLeft 1000ms forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 1000ms forwards;
+}
+
+.animated {
+  opacity: 1 !important; // Ensure the element remains visible after animation
+}
 
 
 @media screen and (min-width: 1512px) and (max-width: 1919px) {

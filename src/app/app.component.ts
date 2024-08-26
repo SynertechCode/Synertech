@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, ViewChild, OnInit, AfterViewInit, Inject, PLATFORM_ID, Renderer2, NgZone } from '@angular/core';
 import { SwiperOptions, Swiper } from 'swiper';
@@ -6,6 +7,20 @@ import { SwiperOptions, Swiper } from 'swiper';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('slideInLeft', [
+      state('void', style({ transform: 'translateX(-100%)', opacity: 0 })),
+      transition(':enter', [
+        animate('1000ms', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ]),
+    trigger('slideInRight', [
+      state('void', style({ transform: 'translateX(100%)', opacity: 0 })),
+      transition(':enter', [
+        animate('1000ms', style({ transform: 'translateX(0)', opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
@@ -139,6 +154,7 @@ export class AppComponent implements OnInit, AfterViewInit {
         text.classList.remove('scrolled');
       });
     }
+
   }
 
   scrollToSection(section: string) {
@@ -189,4 +205,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   toggleForm() {
     this.isOpen = !this.isOpen;
   }
+
+
 }
