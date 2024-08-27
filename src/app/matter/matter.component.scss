@@ -17,7 +17,7 @@
   height: 440px;
   align-items: center;
   justify-content: center;
-  border-radius: 16px;
+  border-radius: 16px;  
   border: 1px solid #000;
   flex-direction: row;
   position: relative;
@@ -53,12 +53,6 @@
   color: #000;
 }
 
-.draggable {
-  position: absolute !important;
-  user-select: none;
-  cursor: pointer;
-}
-
 
 #matterCanvas {
   width: 100% !important;
@@ -86,22 +80,10 @@
   .matter {
     height: 400px;
   }
-  .draggable {
-    width: 142px;
-    height: 42px;
-    flex-shrink: 0;
-    font-size: 18px;
-  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 833px) {
   .matter-section {
     padding: 0;
-  }
-  .draggable {
-    width: 112px;
-    height: 42px;
-    flex-shrink: 0;
-    font-size: 12px;
   }
 }
