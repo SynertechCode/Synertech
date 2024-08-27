@@ -1890,10 +1890,12 @@ text-transform: uppercase;
   animation: fall 2.4s infinite;
   width: 76px;
   height: 38px;
+  left: 0;
+  right: 0;
 }
 
-.animated-arrow:nth-child(1) img {
-  margin-left: 10px;
+.animated-arrow img:nth-child(1) {
+  left: 12px;
 }
 
 @keyframes fall {
