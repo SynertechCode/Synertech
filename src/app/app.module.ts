@@ -9,6 +9,9 @@ import { MatterModule } from "./matter/matter.module";
 import { FormsModule } from "@angular/forms";
 import { FormComponent } from "./form/form.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+
+
 
 @NgModule({
   imports: [
@@ -19,11 +22,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatterModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxMaskDirective 
   ],
   exports: [AppComponent,FormComponent],
   declarations: [AppComponent,FormComponent],
-  providers: [],
+  providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
 

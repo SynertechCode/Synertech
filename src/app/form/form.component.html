@@ -7,54 +7,99 @@
       </div>
     </div>
     <p class="form-title">Let's get started</p>
-    <label class="form-label" for="username">
-      <p class="title-label">Your name</p>
-      <input
-        id="username"
-        placeholder="Your name"
-        class="what-interests-you-input input-form"
-        type="text"
-        [(ngModel)]="username"
-        name="username"
-        required
-        #usernameField="ngModel"
-      >
-      <div *ngIf="usernameField.invalid && usernameField.touched" class="error">
-        Name is required.
-      </div>
-    </label>
 
-    <label class="form-label" for="email">
-      <p class="title-label">Your email</p>
-      <input
-        id="email"
-        placeholder="Your email"
-        class="what-s-your-ndustry-input input-form"
-        type="email"
-        [(ngModel)]="email"
-        name="email"
-        required
-        #emailField="ngModel"
-      >
-      <div *ngIf="emailField.invalid && emailField.touched" class="error">
-        Valid email is required.
-      </div>
-    </label>
+    <!-- Контейнер з position: relative для кожного поля -->
+    <div class="field-container">
+      <label class="form-label" for="username">
+        <p class="title-label">Your name*</p>
+        <input
+          id="username"
+          placeholder="Your name"
+          class="what-interests-you-input input-form"
+          type="text"
+          [(ngModel)]="username"
+          name="username"
+          required
+          #usernameField="ngModel"
+        >
+        <div *ngIf="usernameField.invalid && usernameField.touched" class="error">
+          Name is required.
+        </div>
+      </label>
+    </div>
 
-    <label for="phone" class="form-label">
-      <p class="title-label">Phone number</p>
-      <input type="text" class="input-form" placeholder="+1 (000) 123 4567">
-    </label>
+    <div class="field-container">
+      <label class="form-label" for="email">
+        <p class="title-label">Your email*</p>
+        <input
+          id="email"
+          placeholder="Your email"
+          class="what-s-your-ndustry-input input-form"
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          required
+          #emailField="ngModel"
+        >
+        <div *ngIf="emailField.invalid && emailField.touched" class="error">
+          Valid email is required.
+        </div>
+      </label>
+    </div>
 
-    <label for="date" class="form-label date-people">
-      <p class="title-label">When to call you</p>
-      <input type="datetime-local" class="input-form" placeholder="Select Date">
-    </label>
+    <div class="field-container">
+      <label for="phone" class="form-label">
+        <p class="title-label">Phone number*</p>
+        <input
+          type="text"
+          class="input-form"
+          placeholder="+1 (___) ___ ____"
+          maxlength="18"
+          [(ngModel)]="phone"
+          name="phone"
+          required
+          #phoneField="ngModel"
+          mask="(000) 000 0000"
+          prefix="+1 "
+        >
+        <div *ngIf="phoneField.invalid && phoneField.touched" class="error">
+          Phone number must start with "+1" and follow the format.
+        </div>
+      </label>
+    </div>
 
-    <label class="form-label project-name" for="project">
-      <p class="title-label">Your project is about</p>
-      <input type="text" class="input-form" placeholder="Your name project">
-    </label>
+    <div class="field-container">
+      <label for="datetime" class="form-label date-people">
+        <p class="title-label">When to call you*</p>
+        <input
+          type="text"
+          id="datetime"
+          class="input-form date-input-form"
+          placeholder="Select Date"
+          [(ngModel)]="date"
+          name="date"
+          required
+          #dateField="ngModel"
+        >
+        <div *ngIf="dateField.invalid && dateField.touched" class="error">
+          Date and time are required.
+        </div>
+      </label>
+    </div>
+
+    <div class="field-container">
+      <label class="form-label project-name" for="project">
+        <p class="title-label">Company name (Optional)</p>
+        <input
+          type="text"
+          class="input-form"
+          placeholder="Company name"
+          [(ngModel)]="project"
+          name="project"
+          #projectField="ngModel"
+        >
+      </label>
+    </div>
 
     <button class="form-button-send" type="submit" [disabled]="form.invalid">Send</button>
   </div>

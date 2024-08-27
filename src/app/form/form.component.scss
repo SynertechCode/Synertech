@@ -1,4 +1,7 @@
-.form {
+@import 'flatpickr/dist/flatpickr.min.css';
+
+
+  .form {
   display: none;
 }
 
@@ -10,7 +13,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999999;
+  z-index: 30000;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
@@ -25,6 +28,7 @@
   background: #D4D0C2;
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .form-menu-header {
@@ -36,8 +40,6 @@
 .form-menu-title {
 color: #000;
 text-align: right;
-leading-trim: both;
-text-edge: cap;
 font-family: Nekst;
 font-size: 30px;
 font-style: normal;
@@ -66,7 +68,6 @@ font-style: normal;
 font-weight: 600;
 line-height: normal; /* 552% */
 text-transform: uppercase;
-margin-bottom: 24px;
 }
 
 .form-label {
@@ -85,19 +86,8 @@ font-weight: 500;
 line-height: 120%; /* 45.6px */
 }
 
-.what-interests-you-input,
-.what-s-your-ndustry-input {
-  width: 100%;
-  font-size: 24px;
-height: 50px;
-border-radius: 16px;
-background: #D4D0C2;
-border: 1px solid #000;
-padding-left: 24px;
-margin-bottom: 24px;
-}
-
 .input-form {
+  position: relative;
 font-family: "Nekst";
 padding: 10px 20px;
 color: #000;
@@ -115,16 +105,12 @@ height: 56px;
   font-size: 20px;
 }
 
-.date-people {
-  margin-top: 16px;
-}
-
 .project-name {
-  margin-top: 16px;
   z-index: 100;
 }
 
 .form-button-send {
+  z-index: 1;
   position: absolute;
   border-radius: 50%;
   color: var(--black, #000);
@@ -137,13 +123,17 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 text-transform: uppercase;
-width: 145px;
-height: 145px;
+width: 120px;
+height: 120px;
 flex-shrink: 0;
 background-color: #FCFF62;
 right: 34px;
 top: 710px;
 transition: all 0.3s ease;
+}
+
+.form-button-send:hover {
+  top: 746px;
 }
 
 .select-form {
@@ -174,131 +164,145 @@ line-height: 120%; /* 24px */
   height: 140px;
 }
 
-// @media screen and (min-width: 1512px) and (max-width: 1919px) {
-// .form-menu {
-// }
+/* styles.scss або form.component.scss */
 
-// .form-button-send {
-//   width: 100px;
-//   height: 100px;
-//   right: 50px;
-//   top: 630px;
-// }
 
-// .form-menu-title {
-//   margin-bottom: 0;
-//   font-size: 36px;
-// }
+/* form.component.scss або styles.scss */
 
-// .form-title {
-//   margin-bottom: 0;
-// }
+/* Задаємо шрифт Nekst для календаря flatpickr */
+.flatpickr-calendar {
+  z-index: 1000000 !important;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Nekst', sans-serif !important; /* Додаємо шрифт Nekst */
+}
 
-// .select-form {
-//   height: 40px;
-//   width: 160px;
-//   padding: 0;
-//   padding-left: 12px;
-// }
+::ng-deep .flatpickr-calendar {
+  background-color: #D4D0C2;
+  border-radius: 16px;
+  border: #000 1px solid;
+  font-family: 'Nekst', sans-serif !important;
+}
 
-// .textarea-form {
-//   height: 130px;
-// }
+::ng-deep .flatpickr-month {
+  font-family: 'Nekst', sans-serif !important;
+}
 
-// }
+::ng-deep .flatpickr-month:hover {
+  background-color: #D4D0C2;
+}
+
+::ng-deep .flatpickr-prev-month,
+::ng-deep .flatpickr-next-month {
+  font-family: 'Nekst', sans-serif !important;
+}
+
+::ng-deep .flatpickr-day {
+  font-family: 'Nekst', sans-serif !important;
+}
+
+
 
 @media screen and (min-width: 834px) and (max-width: 1511px) {
   .form-menu {
-    height: 100vh;
-    padding: 24px;
-    gap: 0;
-    border-radius: 0;
-    gap: 12px;
+    width: 641px;
+    height: 744px;
   }
+
   .title-label {
-    font-size: 18px;
-  }
-  .your-info-input {
-    margin-top: 0;
-  }
-  .form-button-send {
-    top: 710px;
-    width: 100px;
-    height: 100px;
+    font-size: 28px;
   }
   .input-form {
-    font-size: 18px;
+    height: 46px;
+  }
+  .form-button-send {
+    top: 620px;
+  }
+  .form-button-send:hover {
+    top: 620px;
+  }
+
+  .flatpickr-calendar {
+    width: 100% !important; /* Календар буде займати 80% ширини контейнера */
+    font-size: 14px; /* Нормальний розмір шрифту */
+  }
+
+  .flatpickr-month {
+    font-size: 16px; /* Нормальний розмір шрифту місяця */
+  }
+
+  .flatpickr-day {
+    font-size: 14px; /* Нормальний розмір шрифту дня */
+  }
+
+  .flatpickr-prev-month,
+  .flatpickr-next-month {
+    font-size: 16px; /* Нормальний розмір шрифту кнопок перемикання місяців */
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 833px) {
   .form-menu {
-    height: 100vh;
-    padding: 18px;
-    gap: 0;
     border-radius: 0;
-    gap: 12px;
-  }
-  .form-label {
-    gap: 8px;
-  }
-  .form-menu-header {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-  }
-  .form-menu-title {
-    font-size: 24px;
-    line-height: normal;
-    margin-bottom: 0;
+    padding: 16px;
+    width: 100%;
+    height: 100%;
   }
   .form-title {
     font-size: 29px;
   }
+  .title-label {
+    font-size: 20px;
+  }
   .input-form {
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-  .input-form::placeholder {
-    font-size: 13px;
-  }
-  .what-interests-you-input,
-  .what-s-your-ndustry-input {
-    font-size: 13px;
+    display: flex;
+    align-items: center;
     height: 36px;
   }
-  .title-label {
-    font-size: 18px;
-  }
-  .your-info-input {
-    margin-top: 12px;
-  }
-  .select-form {
+  .input-form::placeholder {
+    margin: auto 0;
     font-size: 13px;
-    padding: 0 12px;
-    width: 150px;
-    height: 41px;
-    flex-shrink: 0;
   }
   .form-button-send {
-    width: 103px;
-    height: 103px;
-    flex-shrink: 0;
-    right: 34px;
-    top : 522px;
+    top: 510px;
   }
-  .textarea-form {
-    height: 80px;
+  .form-button-send:hover {
+    top: 510px;
   }
-  .what-interests-you-input,
-  .what-s-your-ndustry-input {
-    margin-bottom: 0;
+
+  .flatpickr-calendar {
+    width: 100% !important; /* Робимо календар шириною 100% */
+    background-color: #D4D0C2;
+    font-size: 12px; /* Зменшуємо розмір шрифту */
+  }
+
+  .flatpickr-month {
+    font-size: 14px; /* Зменшуємо розмір шрифту місяця */
+  }
+
+  .flatpickr-day {
+    font-size: 12px; /* Зменшуємо розмір шрифту дня */
+  }
+
+  .flatpickr-prev-month,
+  .flatpickr-next-month {
+    font-size: 14px; /* Зменшуємо розмір шрифту кнопок перемикання місяців */
   }
 }
 
+.field-container {
+  position: relative;
+  z-index: 100;
+}
+
 .error {
+  position: absolute;
   color: red;
-  font-size: 12px;
-  font-family: Nekst;
-  margin-left: 12px;
+  font-size: 14px;
+  font-family: 'Nekst';
+  top: 100%;
+  left: 12px;
+  transform: translateY(5px);
 }

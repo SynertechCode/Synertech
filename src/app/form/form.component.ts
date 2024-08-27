@@ -1,18 +1,28 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, switchMap } from 'rxjs';
+import 'flatpickr/dist/flatpickr.min.css'; // Імпорт стилів
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent {
+export class FormComponent implements AfterViewInit {
   username: string = '';
   email: string = '';
   phone: string = ''; // Added phone number property
   date: string = ''; // Added date property
   project: string = '';
+
+  ngAfterViewInit() {
+      flatpickr("#datetime", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        minDate: "today",
+    });
+  }
 
   @Input() isOpen: boolean = false;
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
@@ -73,4 +83,5 @@ export class FormComponent {
     this.date = ''; // Reset date
     this.project = '';
   }
+
 }
