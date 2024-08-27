@@ -3,7 +3,7 @@
     <div class="form-menu-header">
       <p class="form-menu-title">synertech</p>
       <div (click)="toggleForm()">
-        <img class="form-menu-x" src="../assets/connect/x.png" alt="">
+        <img class="form-menu-x" src="../assets/x.svg" alt="">
       </div>
     </div>
     <p class="form-title">Let's get started</p>
@@ -41,40 +41,19 @@
       </div>
     </label>
 
-    <label class="form-label select" for="budget">
-      <p class="title-label">What's your budget?</p>
-      <select
-        id="budget"
-        class="select-form"
-        name="budget"
-        [(ngModel)]="select"
-        required
-        #budgetField="ngModel"
-      >
-        <option disabled value="select">-- Select --</option>
-        <option value="500"> &lt; 500$</option>
-        <option value="500-1000">500$-1000$</option>
-        <option value="1000"> &gt; 1000$</option>
-      </select>
-      <div *ngIf="budgetField.invalid && budgetField.touched" class="error">
-        Budget selection is required.
-      </div>
+    <label for="phone" class="form-label">
+      <p class="title-label">Phone number</p>
+      <input type="text" class="input-form" placeholder="+1 (000) 123 4567">
     </label>
 
-    <label class="form-label your-info-input" for="project">
+    <label for="date" class="form-label date-people">
+      <p class="title-label">When to call you</p>
+      <input type="datetime-local" class="input-form" placeholder="Select Date">
+    </label>
+
+    <label class="form-label project-name" for="project">
       <p class="title-label">Your project is about</p>
-      <textarea
-        id="project"
-        placeholder="Your project is about"
-        class="input-form textarea-form"
-        [(ngModel)]="project"
-        name="project"
-        required
-        #projectField="ngModel"
-      ></textarea>
-      <div *ngIf="projectField.invalid && projectField.touched" class="error">
-        Project description is required.
-      </div>
+      <input type="text" class="input-form" placeholder="Your name project">
     </label>
 
     <button class="form-button-send" type="submit" [disabled]="form.invalid">Send</button>

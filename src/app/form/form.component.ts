@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { of, switchMap } from 'rxjs';
 
-
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,7 +10,8 @@ import { of, switchMap } from 'rxjs';
 export class FormComponent {
   username: string = '';
   email: string = '';
-  select: string = 'select'; // Default value
+  phone: string = ''; // Added phone number property
+  date: string = ''; // Added date property
   project: string = '';
 
   @Input() isOpen: boolean = false;
@@ -27,14 +27,15 @@ export class FormComponent {
   registerUser(event: Event): void {
     event.preventDefault();
 
-    if (!this.username || !this.email || !this.select || !this.project) {
+    if (!this.username || !this.email || !this.phone || !this.date || !this.project) {
       return;
     }
 
     const postData = {
       name: this.username,
       email: this.email,
-      select: this.select,
+      phone: this.phone,
+      date: this.date,
       project: this.project
     };
 
@@ -68,7 +69,8 @@ export class FormComponent {
   resetForm(): void {
     this.username = '';
     this.email = '';
-    this.select = ''; // Reset to default value
+    this.phone = ''; // Reset phone
+    this.date = ''; // Reset date
     this.project = '';
   }
 }
