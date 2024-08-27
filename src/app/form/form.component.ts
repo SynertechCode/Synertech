@@ -37,7 +37,7 @@ export class FormComponent implements AfterViewInit {
   registerUser(event: Event): void {
     event.preventDefault();
 
-    if (!this.username || !this.email || !this.phone || !this.date || !this.project) {
+    if (!this.username || !this.email || !this.phone || !this.date) {
       return;
     }
 
@@ -46,7 +46,7 @@ export class FormComponent implements AfterViewInit {
       email: this.email,
       phone: this.phone,
       date: this.date,
-      project: this.project
+      project: this.project || 'N/A'
     };
 
     console.log('Data being sent to the server:', postData);
