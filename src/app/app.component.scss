@@ -1892,6 +1892,10 @@ text-transform: uppercase;
   height: 38px;
 }
 
+.animated-arrow:nth-child(1) img {
+  margin-left: 10px;
+}
+
 @keyframes fall {
   0% {
     top: -40%;
