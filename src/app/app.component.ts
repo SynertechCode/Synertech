@@ -1,7 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, ViewChild, OnInit, AfterViewInit, Inject, PLATFORM_ID, Renderer2, NgZone, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { SwiperOptions, Swiper } from 'swiper';
 
 @Component({
@@ -168,7 +167,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= sectionTop - 100) {
+        if (window.pageYOffset >= sectionTop - 76) {
           current = section.getAttribute('id')!;
         }
       });
@@ -177,7 +176,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       if (this.currentSection === 'services') {
         this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
-      } else if (this.currentSection === 'hello') {
+      } else if (this.currentSection === 'home') {
         this.navigationSwiper.swiperRef.slideTo(0);
       }
     }
