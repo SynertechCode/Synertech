@@ -57,21 +57,21 @@
         <div class="phones-container">
           <video #videoElement src="../assets/video-syner.mp4" class="phones-img" autoplay loop muted playsinline></video>
         </div>
-      <div id="about-us" class="about-us-section">
-        <div class="about-us">
-          <div class="ideas-ignite-block" *ngIf="true" @slideInLeft>Ideas Ignite</div>
-          <div class="black-circle" *ngIf="true" @slideInLeft></div>
-          <div class="creativity-block" *ngIf="true" @slideInLeft>Creativity</div>
-          <div class="takes-flight-fueling-innovation-block" *ngIf="true" @slideInRight>Takes Flight. Fueling Innovation,</div>
-          <div class="crafting-dreams" *ngIf="true" @slideInLeft>Crafting Dreams.</div>
-          <div class="where-thoughts-soar" *ngIf="true" @slideInLeft>Where Thoughts Soar,</div>
-          <div class="while-block-first" *ngIf="true" @slideInRight></div>
-          <div class="and-imagination-creates" *ngIf="true" @slideInRight>and Imagination Creates -</div>
-          <div class="limitless-horizons" *ngIf="true" @slideInLeft>Limitless Horizons. </div>
-          <div class="while-block-second" *ngIf="true" @slideInRight></div>
-          <div class="unleash-your-potential" *ngIf="true" @slideInRight>Unleash Your Potential with Us.</div>
+        <div id="about-us" class="about-us-section">
+          <div class="about-us">
+            <div class="ideas-ignite-block" *ngIf="true" [@slideInLeft]="sectionInView ? 'true' : 'false'">Ideas Ignite</div>
+            <div class="black-circle" *ngIf="true" [@slideInLeft]="sectionInView ? 'true' : 'false'"></div>
+            <div class="creativity-block" *ngIf="true" [@slideInLeft]="sectionInView ? 'true' : 'false'">Creativity</div>
+            <div class="takes-flight-fueling-innovation-block" *ngIf="true" [@slideInRight]="sectionInView ? 'true' : 'false'">Takes Flight. Fueling Innovation,</div>
+            <div class="crafting-dreams" *ngIf="true" [@slideInLeft]="sectionInView ? 'true' : 'false'">Crafting Dreams.</div>
+            <div class="where-thoughts-soar" *ngIf="true" [@slideInLeft]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
+            <div class="while-block-first" *ngIf="true" [@slideInRight]="sectionInView ? 'true' : 'false'"></div>
+            <div class="and-imagination-creates" *ngIf="true" [@slideInRight]="sectionInView ? 'true' : 'false'">and Imagination Creates -</div>
+            <div class="limitless-horizons" *ngIf="true" [@slideInLeft]="sectionInView ? 'true' : 'false'">Limitless Horizons. </div>
+            <div class="while-block-second" *ngIf="true" [@slideInRight]="sectionInView ? 'true' : 'false'"></div>
+            <div class="unleash-your-potential" *ngIf="true" [@slideInRight]="sectionInView ? 'true' : 'false'">Unleash Your Potential with Us.</div>
+          </div>
         </div>
-      </div>
       </section>
       <!-- SERVICES -->
       <section id="services" class="services-section">
@@ -116,9 +116,9 @@
           </div>
         </div>
       </div>
+      </section>
       <!-- MATTER -->
       <app-matter></app-matter>
-      </section>  
       <!-- PORTFOLIO -->
       <section id="portfolio" class="portfolio-section">
         <div class="portfolio-container">

@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { isPlatformBrowser } from '@angular/common';
-import { Component, HostListener, ViewChild, OnInit, AfterViewInit, Inject, PLATFORM_ID, Renderer2, NgZone } from '@angular/core';
+import { Component, HostListener, ViewChild, OnInit, AfterViewInit, Inject, PLATFORM_ID, Renderer2, NgZone, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { SwiperOptions, Swiper } from 'swiper';
 
 @Component({
@@ -9,17 +10,15 @@ import { SwiperOptions, Swiper } from 'swiper';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger('slideInLeft', [
-      state('void', style({ transform: 'translateX(-100%)', opacity: 0 })),
-      transition(':enter', [
-        animate('1000ms', style({ transform: 'translateX(0)', opacity: 1 }))
-      ])
+      state('false', style({ opacity: 0, transform: 'translateX(-100%)' })),
+      state('true', style({ opacity: 1, transform: 'translateX(0)' })),
+      transition('false => true', animate('1000ms ease-out')),
     ]),
     trigger('slideInRight', [
-      state('void', style({ transform: 'translateX(100%)', opacity: 0 })),
-      transition(':enter', [
-        animate('1000ms', style({ transform: 'translateX(0)', opacity: 1 }))
-      ])
-    ])
+      state('false', style({ opacity: 0, transform: 'translateX(100%)' })),
+      state('true', style({ opacity: 1, transform: 'translateX(0)' })),
+      transition('false => true', animate('1000ms ease-out')),
+    ]),
   ]
 })
 export class AppComponent implements OnInit, AfterViewInit {
@@ -28,6 +27,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.currentSection = section;
     this.scrollToSection(section);
   }
+
+  sectionInView = false;
 
   isBrowser: boolean;
   swiperConfig: SwiperOptions = {};
@@ -45,7 +46,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
   private renderer: Renderer2,
-  private ngZone: NgZone
+  private ngZone: NgZone,
+  private el: ElementRef,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
@@ -53,7 +55,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   setupIntersectionObserver() {
     const options = {
       root: null, // вікно браузера
-      threshold: 0.5 // Потрібно, щоб 50% секції були в полі зору
+      threshold: 1 // Потрібно, щоб 50% секції були в полі зору
     };
 
     this.observer = new IntersectionObserver((entries) => {
@@ -73,7 +75,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (this.isBrowser) {
       const isMobile = window.innerWidth < 833;
-      const isTablet = window.innerWidth > 833 && window.innerWidth < 1511;
 
       this.swiperConfig = {
         slidesPerView: 3,
@@ -118,6 +119,10 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       };
     }
+
+    window.onbeforeunload = () => {
+      window.scrollTo(0, 0);
+    };
 };
 
   ngAfterViewInit() {
@@ -130,6 +135,21 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
     if (this.isBrowser) {
       this.setupIntersectionObserver();
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.sectionInView = true;
+        } else {
+          this.sectionInView = false;
+        }
+      });
+    });
+
+    const section = document.querySelector('#about-us');
+    if (section) {
+      observer.observe(section);
     }
   }
 
@@ -148,7 +168,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       sections.forEach((section) => {
         const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= sectionTop - 76) {
+        if (window.pageYOffset >= sectionTop - 100) {
           current = section.getAttribute('id')!;
         }
       });
@@ -229,7 +249,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   toggleForm() {
     this.isOpen = !this.isOpen;
-  } 
+  }
 
 
 }
