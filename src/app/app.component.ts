@@ -38,6 +38,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('swiper') swiper: Swiper | undefined;
   @ViewChild('navigationSwiper') navigationSwiper: any;
 
+  observer: IntersectionObserver | undefined;
+
   private aboutUsSection: HTMLElement | null = null;
   private aboutUsTexts: NodeListOf<HTMLElement> | null = null;
 
@@ -46,6 +48,26 @@ export class AppComponent implements OnInit, AfterViewInit {
   private ngZone: NgZone
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  setupIntersectionObserver() {
+    const options = {
+      root: null, // вікно браузера
+      threshold: 0.5 // Потрібно, щоб 50% секції були в полі зору
+    };
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.currentSection = entry.target.id;
+        }
+      });
+    }, options);
+
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      this.observer!.observe(section);
+    });
   }
 
   ngOnInit() {
@@ -105,6 +127,9 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.aboutUsTexts = this.aboutUsSection.querySelectorAll('div');
         this.handleScroll();
       }
+    }
+    if (this.isBrowser) {
+      this.setupIntersectionObserver();
     }
   }
 
@@ -204,7 +229,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   toggleForm() {
     this.isOpen = !this.isOpen;
-  }
+  } 
 
 
 }

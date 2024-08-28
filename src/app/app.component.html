@@ -57,8 +57,7 @@
         <div class="phones-container">
           <video #videoElement src="../assets/video-syner.mp4" class="phones-img" autoplay loop muted playsinline></video>
         </div>
-      </section>
-      <section id="about-us" class="about-us-section">
+      <div id="about-us" class="about-us-section">
         <div class="about-us">
           <div class="ideas-ignite-block" *ngIf="true" @slideInLeft>Ideas Ignite</div>
           <div class="black-circle" *ngIf="true" @slideInLeft></div>
@@ -72,6 +71,7 @@
           <div class="while-block-second" *ngIf="true" @slideInRight></div>
           <div class="unleash-your-potential" *ngIf="true" @slideInRight>Unleash Your Potential with Us.</div>
         </div>
+      </div>
       </section>
       <!-- SERVICES -->
       <section id="services" class="services-section">
@@ -116,9 +116,9 @@
           </div>
         </div>
       </div>
-      </section>
       <!-- MATTER -->
       <app-matter></app-matter>
+      </section>  
       <!-- PORTFOLIO -->
       <section id="portfolio" class="portfolio-section">
         <div class="portfolio-container">
