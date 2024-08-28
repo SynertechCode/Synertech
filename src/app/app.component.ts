@@ -10,14 +10,14 @@ import { SwiperOptions, Swiper } from 'swiper';
   styleUrls: ['./app.component.scss'],
   animations: [
     trigger('slideInLeft', [
-      state('false', style({ opacity: 0, transform: 'translateX(-100%)' })),
+      state('false', style({ opacity: 0, transform: 'translateX(-100%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('1000ms ease-out')),
+      transition('false => true', animate('1200ms ease')),
     ]),
     trigger('slideInRight', [
-      state('false', style({ opacity: 0, transform: 'translateX(100%)' })),
+      state('false', style({ opacity: 0, transform: 'translateX(100%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('1000ms ease-out')),
+      transition('false => true', animate('1200ms ease')),
     ]),
   ]
 })
