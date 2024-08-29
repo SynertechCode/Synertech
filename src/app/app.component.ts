@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   sectionInView = false;
+  animationPlayed = false; // Додаємо змінну для відстеження
 
   isBrowser: boolean;
   swiperConfig: SwiperOptions = {};
@@ -124,33 +125,33 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
 };
 
-  ngAfterViewInit() {
-    if (this.isBrowser) {
-      this.aboutUsSection = document.querySelector('.about-us-section');
-      if (this.aboutUsSection) {
-        this.aboutUsTexts = this.aboutUsSection.querySelectorAll('div');
-        this.handleScroll();
-      }
-    }
-    if (this.isBrowser) {
-      this.setupIntersectionObserver();
-    }
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.sectionInView = true;
-        } else {
-          this.sectionInView = false;
-        }
-      });
-    });
-
-    const section = document.querySelector('#about-us');
-    if (section) {
-      observer.observe(section);
+ngAfterViewInit() {
+  if (this.isBrowser) {
+    this.aboutUsSection = document.querySelector('.about-us-section');
+    if (this.aboutUsSection) {
+      this.aboutUsTexts = this.aboutUsSection.querySelectorAll('div');
+      this.handleScroll(); // Виклик вашої існуючої логіки прокручування
     }
   }
+
+  if (this.isBrowser) {
+    this.setupIntersectionObserver();
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !this.animationPlayed) {
+        this.sectionInView = true;
+        this.animationPlayed = true; // Запам'ятовуємо, що анімація була виконана
+      }
+    });
+  });
+
+  const section = document.querySelector('#about-us');
+  if (section) {
+    observer.observe(section);
+  }
+}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -176,7 +177,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
       if (this.currentSection === 'services') {
         this.navigationSwiper.swiperRef.slideTo(this.navigationSwiper.swiperRef.slides.length - 1);
-      } else if (this.currentSection === 'home') {
+      } else if (this.currentSection === 'hello') {
         this.navigationSwiper.swiperRef.slideTo(0);
       }
     }
