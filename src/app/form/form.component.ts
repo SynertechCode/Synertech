@@ -17,10 +17,11 @@ export class FormComponent implements AfterViewInit {
   project: string = '';
 
   ngAfterViewInit() {
-      flatpickr("#datetime", {
-        enableTime: true,
-        dateFormat: "Y-m-d H:i",
-        minDate: "today",
+    flatpickr("#datetime", {
+      disableMobile: true, // Change from "true" to true (boolean)
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      minDate: "today",
     });
   }
 

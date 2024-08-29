@@ -249,6 +249,7 @@ line-height: 120%; /* 24px */
     padding: 16px;
     width: 100%;
     height: 100%;
+    gap: 16px;
   }
   .form-title {
     font-size: 29px;
@@ -266,12 +267,18 @@ line-height: 120%; /* 24px */
     font-size: 13px;
   }
   .form-button-send {
-    top: 510px;
+    width: 100px;
+    height: 100px;
+    top: 520px;
   }
   .form-button-send:hover {
-    top: 510px;
+    top: 520px;
   }
-
+  .date-input-form {
+    font-size: 13px;
+    height: 36px;
+    background: #D4D0C2;
+  }
   .flatpickr-calendar {
     width: 100% !important; /* Робимо календар шириною 100% */
     background-color: #D4D0C2;
