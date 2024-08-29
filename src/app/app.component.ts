@@ -11,12 +11,12 @@ import { SwiperOptions, Swiper } from 'swiper';
     trigger('slideInLeft', [
       state('false', style({ opacity: 0, transform: 'translateX(-100%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('1200ms ease')),
+      transition('false => true', animate('2000ms ease')),
     ]),
     trigger('slideInRight', [
       state('false', style({ opacity: 0, transform: 'translateX(100%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('1200ms ease')),
+      transition('false => true', animate('2000ms ease')),
     ]),
   ]
 })
@@ -39,6 +39,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   currentSection: string = 'home';
 
   activeSlideIndex: number = 0;
+
+  sectionInViewMobile: boolean = true;
+
+  isScreenLarge: boolean = window.innerWidth > 1512;
 
   @ViewChild('swiper') swiper: Swiper | undefined;
 
@@ -171,7 +175,11 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.updateCurrentSection();
       this.handleScroll();
     }
+  }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.isScreenLarge = window.innerWidth < 1512;
   }
 
   updateCurrentSection() {

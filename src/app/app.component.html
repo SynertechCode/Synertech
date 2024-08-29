@@ -63,10 +63,14 @@
           <div class="about-us">
             <div class="ideas-ignite-block" [@slideInLeft]="sectionInView ? 'true' : 'false'">Ideas Ignite</div>
             <div class="black-circle" [@slideInLeft]="sectionInView ? 'true' : 'false'"></div>
-            <div class="creativity-block" [@slideInLeft]="sectionInView ? 'true' : 'false'">Creativity</div>
+            <div class="creativity-block" [@slideInRight]="sectionInView ? 'true' : 'false'">Creativity</div>
             <div class="takes-flight-fueling-innovation-block" [@slideInRight]="sectionInView ? 'true' : 'false'">Takes Flight. Fueling Innovation,</div>
             <div class="crafting-dreams" [@slideInLeft]="sectionInView ? 'true' : 'false'">Crafting Dreams.</div>
-            <div class="where-thoughts-soar" [@slideInLeft]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
+
+            <!-- Додайте умову для відображення одного з елементів залежно від ширини екрана -->
+            <div *ngIf="isScreenLarge" class="where-thoughts-soar" [@slideInLeft]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
+            <div *ngIf="!isScreenLarge" class="where-thoughts-soar-mobile" [@slideInRight]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
+
             <div class="while-block-first" [@slideInRight]="sectionInView ? 'true' : 'false'"></div>
             <div class="and-imagination-creates" [@slideInRight]="sectionInView ? 'true' : 'false'">and Imagination Creates -</div>
             <div class="limitless-horizons" [@slideInLeft]="sectionInView ? 'true' : 'false'">Limitless Horizons. </div>
@@ -74,6 +78,7 @@
             <div class="unleash-your-potential" [@slideInRight]="sectionInView ? 'true' : 'false'">Unleash Your Potential with Us.</div>
           </div>
         </div>
+
       </section>
       <!-- SERVICES -->
       <section id="services" class="services-section">

@@ -80,7 +80,7 @@ text-transform: uppercase;
 .title-label {
   color: #000;
 font-family: "Nekst";
-font-size: 24px;
+font-size: 20px;
 font-style: normal;
 font-weight: 500;
 line-height: 120%; /* 45.6px */
@@ -128,12 +128,12 @@ height: 120px;
 flex-shrink: 0;
 background-color: #FCFF62;
 right: 34px;
-top: 710px;
+top: 680px;
 transition: all 0.3s ease;
 }
 
 .form-button-send:hover {
-  top: 740px;
+  top: 720px;
 }
 
 .select-form {
