@@ -22,27 +22,34 @@ import { SwiperOptions, Swiper } from 'swiper';
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
-  setActiveSection(section: string) {
-    this.currentSection = section;
-    this.scrollToSection(section);
-  }
-
   sectionInView = false;
+
   animationPlayed = false; // Додаємо змінну для відстеження
 
+  isOpen: boolean = false;
+
   isBrowser: boolean;
+
   swiperConfig: SwiperOptions = {};
+
   portfolioSwiperConfig: SwiperOptions = {};
+
   swiperConfigMobile: SwiperOptions = {};
+
   currentSection: string = 'home';
+
   activeSlideIndex: number = 0;
+
   @ViewChild('swiper') swiper: Swiper | undefined;
+
   @ViewChild('navigationSwiper') navigationSwiper: any;
 
   observer: IntersectionObserver | undefined;
 
   private aboutUsSection: HTMLElement | null = null;
+
   private aboutUsTexts: NodeListOf<HTMLElement> | null = null;
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
   private renderer: Renderer2,
@@ -50,6 +57,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   private el: ElementRef,
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
+  }
+
+  setActiveSection(section: string) {
+  this.currentSection = section;
+  this.scrollToSection(section);
   }
 
   setupIntersectionObserver() {
@@ -123,42 +135,43 @@ export class AppComponent implements OnInit, AfterViewInit {
     window.onbeforeunload = () => {
       window.scrollTo(0, 0);
     };
-};
+  };
 
-ngAfterViewInit() {
-  if (this.isBrowser) {
-    this.aboutUsSection = document.querySelector('.about-us-section');
-    if (this.aboutUsSection) {
-      this.aboutUsTexts = this.aboutUsSection.querySelectorAll('div');
-      this.handleScroll(); // Виклик вашої існуючої логіки прокручування
+  ngAfterViewInit() {
+    if (this.isBrowser) {
+      this.aboutUsSection = document.querySelector('.about-us-section');
+      if (this.aboutUsSection) {
+        this.aboutUsTexts = this.aboutUsSection.querySelectorAll('div');
+        this.handleScroll(); // Виклик вашої існуючої логіки прокручування
+      }
+    }
+
+    if (this.isBrowser) {
+      this.setupIntersectionObserver();
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.animationPlayed) {
+          this.sectionInView = true;
+          this.animationPlayed = true; // Запам'ятовуємо, що анімація була виконана
+        }
+      });
+    });
+
+    const section = document.querySelector('#about-us');
+    if (section) {
+      observer.observe(section);
     }
   }
 
-  if (this.isBrowser) {
-    this.setupIntersectionObserver();
-  }
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !this.animationPlayed) {
-        this.sectionInView = true;
-        this.animationPlayed = true; // Запам'ятовуємо, що анімація була виконана
-      }
-    });
-  });
-
-  const section = document.querySelector('#about-us');
-  if (section) {
-    observer.observe(section);
-  }
-}
-
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
+@HostListener('window:scroll', ['$event'])
+  onWindowScroll(event: Event): void {
     if (this.isBrowser) {
       this.updateCurrentSection();
       this.handleScroll();
     }
+
   }
 
   updateCurrentSection() {
@@ -245,11 +258,8 @@ ngAfterViewInit() {
     }
   }
 
-  isOpen: boolean = false;
-
   toggleForm() {
     this.isOpen = !this.isOpen;
   }
-
 
 }

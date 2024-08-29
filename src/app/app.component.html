@@ -54,10 +54,9 @@
     </div>
       <!-- HELLO -->
       <section id="hello" class="block-phones">
-        <div class="phones-container">
+        <div #videoContainer class="phones-container">
           <video #videoElement src="../assets/video-syner.mp4" class="phones-img" autoplay loop muted playsinline></video>
         </div>
-
         <div id="about-us" class="about-us-section">
           <div class="about-us">
             <div class="ideas-ignite-block" [@slideInLeft]="sectionInView ? 'true' : 'false'">Ideas Ignite</div>
@@ -73,7 +72,6 @@
             <div class="unleash-your-potential" [@slideInRight]="sectionInView ? 'true' : 'false'">Unleash Your Potential with Us.</div>
           </div>
         </div>
-
       </section>
       <!-- SERVICES -->
       <section id="services" class="services-section">

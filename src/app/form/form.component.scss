@@ -279,6 +279,9 @@ line-height: 120%; /* 24px */
     height: 36px;
     background: #D4D0C2;
   }
+  .error.ng-star-inserted {
+    font-size:12px;
+  }
   .flatpickr-calendar {
     width: 100% !important; /* Робимо календар шириною 100% */
     background-color: #D4D0C2;
