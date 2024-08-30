@@ -11,6 +11,10 @@ export class MatterComponent implements AfterViewInit {
   private engine = Engine.create();
   private runner = Runner.create();
   private render!: Render;
+  private isDragging: boolean = false; // Флаг для перевірки перетягування
+  private scrollTarget: number = 0; // Цільова позиція прокручування
+  private currentScroll: number = 0; // Поточна позиція прокручування
+  private scrollSpeed: number = 0.2; // Швидкість прокручування
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -139,6 +143,14 @@ export class MatterComponent implements AfterViewInit {
 
       World.add(this.engine.world, mouseConstraint);
 
+       // Додаємо події для управління флагом isDragging
+       Events.on(mouseConstraint, 'startdrag', () => {
+         this.isDragging = true;  // Установка флага при початку перетягування
+        });
+       Events.on(mouseConstraint, 'enddrag', () => {
+         this.isDragging = false;  // Скидання флага після завершення перетягування
+       });
+
       World.add(this.engine.world, [
         Bodies.rectangle(width / 2, height + 30, width, 58, { isStatic: true }),
         Bodies.rectangle(width / 2, -30, width, 60, { isStatic: true }),
@@ -149,8 +161,27 @@ export class MatterComponent implements AfterViewInit {
       Runner.run(this.runner, this.engine);
       Render.run(this.render);
 
+      // Слухач подій для управління плавним скролінгом сторінки
+      matterCanvasContainer.addEventListener('wheel', (event) => {
+        if (!this.isDragging && window.innerWidth >= 1512) {
+          event.preventDefault(); // Запобігає стандартній поведінці прокручування
+
+          // Оновлюємо цільову позицію прокручування
+          this.scrollTarget = window.scrollY + event.deltaY;
+          this.smoothScroll(); // Запускаємо плавний скролінг
+        }
+      });
     } else {
       console.error("Canvas element not found or is not an HTMLCanvasElement");
+    }
+  }
+
+  // Функція для плавного скролінгу
+  smoothScroll() {
+    if (Math.abs(this.scrollTarget - this.currentScroll) > 1) { // Якщо різниця між поточною та цільовою позицією більше 1
+      this.currentScroll += (this.scrollTarget - this.currentScroll) * this.scrollSpeed; // Зміна поточної позиції
+      window.scrollTo(0, this.currentScroll); // Прокручування сторінки
+      requestAnimationFrame(() => this.smoothScroll()); // Викликаємо знову функцію для плавного скролінгу
     }
   }
 }

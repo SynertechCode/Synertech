@@ -68,7 +68,7 @@
             <div class="crafting-dreams" [@slideInLeft]="sectionInView ? 'true' : 'false'">Crafting Dreams.</div>
 
             <!-- Додайте умову для відображення одного з елементів залежно від ширини екрана -->
-            <div *ngIf="isScreenLarge" class="where-thoughts-soar" [@slideInLeft]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
+            <div *ngIf="isScreenLarge" class="where-thoughts-soar" [@slideInLeftSoar]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
             <div *ngIf="!isScreenLarge" class="where-thoughts-soar-mobile" [@slideInRight]="sectionInView ? 'true' : 'false'">Where Thoughts Soar,</div>
 
             <div class="while-block-first" [@slideInRight]="sectionInView ? 'true' : 'false'"></div>

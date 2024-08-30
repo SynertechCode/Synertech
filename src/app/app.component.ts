@@ -18,11 +18,18 @@ import { SwiperOptions, Swiper } from 'swiper';
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
       transition('false => true', animate('2000ms ease')),
     ]),
+    trigger('slideInLeftSoar', [
+      state('false', style({ opacity: 0, transform: 'translateX(-80%)'})),
+      state('true', style({ opacity: 1, transform: 'translateX(0)' })),
+      transition('false => true', animate('2000ms ease')),
+    ]),
   ]
 })
 export class AppComponent implements OnInit, AfterViewInit {
 
   sectionInView = false;
+
+  sectionInViewSoar = false;
 
   animationPlayed = false; // Додаємо змінну для відстеження
 
@@ -158,6 +165,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       entries.forEach(entry => {
         if (entry.isIntersecting && !this.animationPlayed) {
           this.sectionInView = true;
+          this.sectionInViewSoar = true;
           this.animationPlayed = true; // Запам'ятовуємо, що анімація була виконана
         }
       });
