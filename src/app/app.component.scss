@@ -1072,6 +1072,13 @@ align-items: center;
   border: #000 1px solid;
   border-radius: 200px;
 }
+.about-us-section {
+  width: 300px;
+  overflow: hidden;
+}
+.about-us {
+  margin: 0;
+}
 }
 
 @media screen and (min-width: 390px) and (max-width: 400px) {
