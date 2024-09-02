@@ -300,6 +300,9 @@ line-height: 120%; /* 24px */
   .flatpickr-next-month {
     font-size: 14px; /* Зменшуємо розмір шрифту кнопок перемикання місяців */
   }
+  .error.ng-star-inserted {
+    font-size: 11px;
+  }
 }
 
 .field-container {
