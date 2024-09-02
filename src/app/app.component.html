@@ -2,7 +2,7 @@
 <div class="container"> <!-- CONTAINER -->
   <nav class="nav"> <!-- NAV -->
     <ul class="nav-menu">
-      <li class="nav-list" [class.active]="currentSection === 'home'" (click)="scrollToSection('home')"><a class="nav-link">Home</a></li>
+      <li class="nav-list" [class.active]="currentSection === 'home'" (click)="scrollToTop()"><a class="nav-link">Home</a></li>
       <li class="nav-list" [class.active]="currentSection === 'hello'" (click)="scrollToSection('hello')"><a class="nav-link">Hello</a></li>
       <li class="nav-list" [class.active]="currentSection === 'services'" (click)="scrollToSection('services')"><a class="nav-link">Services</a></li>
       <li class="nav-list" [class.active]="currentSection === 'portfolio'" (click)="scrollToSection('portfolio')"><a class="nav-link">Portfolio</a></li>
@@ -15,7 +15,7 @@
     <swiper #navigationSwiper id="navigationSwiper" class="swiper-phone" [pagination]="{ clickable: true }" (swiper)="onSwiper($event)"
       [spaceBetween]="0" [config]="swiperConfigMobile" (swiperDragMove)="onSwiperDragMove()">
       <ng-template swiperSlide>
-        <a class="link-photo-swiper link-spacing" [class.active]="currentSection === 'home'" (click)="setActiveSection('home')">Home</a>
+        <a class="link-photo-swiper link-spacing" [class.active]="currentSection === 'home'" (click)="scrollToTop()">Home</a>
       </ng-template>
       <ng-template swiperSlide>
         <a class="link-photo-swiper link-spacing" [class.active]="currentSection === 'hello'" (click)="setActiveSection('hello')">Hello</a>
@@ -54,11 +54,11 @@
     </div>
       <!-- HELLO -->
       <section id="hello" class="block-phones">
-        <section id="hello" class="block-phones">
+        <div class="block-phones">
           <div #videoContainer class="phones-container">
             <video #videoElement src="../assets/video-syner.mp4" class="phones-img" autoplay loop muted playsinline></video>
           </div>
-        </section>
+        </div>
         <div id="about-us" class="about-us-section">
           <div class="about-us">
             <div class="ideas-ignite-block" [@slideInLeft]="sectionInView ? 'true' : 'false'">Ideas Ignite</div>

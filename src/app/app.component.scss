@@ -238,6 +238,8 @@ video::-webkit-media-controls {
 // MAIN
 
 .main {
+  z-index: 22;
+  position: relative;
   border-radius: 16px;
   border: 1px solid #000;
   margin-top: -14px;
@@ -247,11 +249,19 @@ video::-webkit-media-controls {
   margin-left: 74px;
   margin-bottom: 24px;
   padding-top: 90px;
+  background-color: #D4D0C2;
 }
 
 .main-text-img {
+  z-index: 1;
   position: relative;
   padding: 0 32px;
+}
+
+.main-text {
+  left: 72px;
+  top: 80px;
+  position: fixed;
 }
 
 .title {
@@ -324,7 +334,7 @@ width: 700px;
 
 .button-get-started {
   position: absolute;
-  right: 660px;
+  left: 760px;
   top: 64px;
 
   color: var(--black, #000);
@@ -355,7 +365,10 @@ transition: all 0.3s ease;
 }
 
 .block-phones {
-  margin-top: 100px;
+  overflow: hidden;
+  background-color: #D4D0C2;
+  z-index: 3;
+  margin-top: 290px;
 }
 
 .phones-img {
@@ -376,9 +389,12 @@ transition: all 0.3s ease;
 // ABOUT US
 
 .about-us-section {
+  background-color: #D4D0C2;
+  position: relative;
+  z-index: 2;
   overflow: hidden;
-  margin-top: 40px;
   padding: 0 32px;
+  padding-top: 40px;
 }
 
 .about-us {
@@ -827,6 +843,11 @@ flex-shrink: 0;
   height: 45px;
   margin-right: 8px;
 }
+.main-text {
+  position: relative;
+  left: 0;
+  top: 0;
+}
 .main-text-img,
 .main-text-btn-get-started {
   padding: 0;
@@ -847,7 +868,7 @@ flex-shrink: 0;
   height: 140px;
   flex-shrink: 0;
   font-size: 16px;
-  right: 300px;
+  left: 300px;
   top: 40px;
 }
 .button-get-started:hover {
@@ -1221,8 +1242,11 @@ line-height: normal;
 // SERVICES
 
 .services-section {
-  margin-top: 100px;
+  position: relative;
+  z-index: 12;
+  background-color: #D4D0C2;
   padding: 0 28px;
+  padding-top: 100px;
 }
 
 .services-container {
@@ -1691,9 +1715,11 @@ top: 106px;
 // PORTFOLIO
 
 .portfolio-section {
-  margin-top: 100px;
+  position: relative;
+  background-color: #D4D0C2;
   padding: 0 32px;
   overflow: hidden;
+  padding-top: 100px;
 }
 
 .portfolio {
@@ -1851,8 +1877,10 @@ flex-shrink: 0;
 //   CONNECT
 
 .connect-section {
+  position: relative;
+  background-color: #D4D0C2;
   padding: 0 32px;
-  margin-top: 100px;
+  padding-top: 100px;
 }
 
 .title-connect {
@@ -2468,9 +2496,11 @@ gap: 10px;
 flex-shrink: 0;
   }
   .about-us-section {
+    background-color: #D4D0C2;
     width: 100%;
   }
   .about-us {
+    background-color: #D4D0C2;
     width: 100%;
   }
   .black-circle {
