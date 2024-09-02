@@ -19,7 +19,7 @@ import { SwiperOptions, Swiper } from 'swiper';
       transition('false => true', animate('2000ms ease')),
     ]),
     trigger('slideInLeftSoar', [
-      state('false', style({ opacity: 0, transform: 'translateX(-80%)'})),
+      state('false', style({ opacity: 0, transform: 'translateX(-70%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
       transition('false => true', animate('2000ms ease')),
     ]),

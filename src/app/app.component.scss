@@ -1058,7 +1058,7 @@ align-items: center;
 gap: 9.499px;
 flex-shrink: 0;
 }
-.where-thoughts-soar-mobile {
+.where-thoughts-soar {
   font-family: 'Nekst';
   font-size: 12px;
   display: flex;
@@ -1094,9 +1094,6 @@ align-items: center;
     width: 100%;
   }
   .where-thoughts-soar {
-    display: none;
-  }
-  .where-thoughts-soar-mobile {
     font-family: 'Nekst';
     font-size: 12px;
     display: flex;
@@ -1171,17 +1168,6 @@ line-height: normal;
   height: 76px;
 justify-content: center;
 align-items: center;
-flex-shrink: 0;
-line-height: normal;
-}
-.where-thoughts-soar {
-  font-size: 16px;
-  display: inline-flex;
-height: 46px;
-width: 220px;
-justify-content: center;
-align-items: center;
-gap: 10px;
 flex-shrink: 0;
 line-height: normal;
 }
