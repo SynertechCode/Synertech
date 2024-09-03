@@ -172,7 +172,7 @@ line-height: 120%; /* 24px */
 /* Задаємо шрифт Nekst для календаря flatpickr */
 .flatpickr-calendar {
   z-index: 1000000 !important;
-  background-color: #fff;
+  background-color: #D4D0C2;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -197,10 +197,26 @@ line-height: 120%; /* 24px */
 ::ng-deep .flatpickr-prev-month,
 ::ng-deep .flatpickr-next-month {
   font-family: 'Nekst', sans-serif !important;
+  background-color: #D4D0C2;
 }
 
 ::ng-deep .flatpickr-day {
   font-family: 'Nekst', sans-serif !important;
+  background-color: #D4D0C2;
+}
+
+::ng-deep .flatpickr-day:hover {
+  background-color: #fff;
+  font-weight: 400;
+}
+
+::ng-deep .flatpickr-day.selected:active {
+  background-color: #FCFF62;
+}
+
+::ng-deep .flatpickr-hour {
+  background-color: #D4D0C2;
+  font-weight: 400;
 }
 
 

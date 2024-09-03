@@ -15,6 +15,7 @@ export class MatterComponent implements AfterViewInit {
   private scrollTarget: number = 0; // Цільова позиція прокручування
   private currentScroll: number = 0; // Поточна позиція прокручування
   private scrollSpeed: number = 0.2; // Швидкість прокручування
+  private initialScrollY: number = 0; // Початкова позиція прокручування перед зміною
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -146,7 +147,7 @@ export class MatterComponent implements AfterViewInit {
        // Додаємо події для управління флагом isDragging
        Events.on(mouseConstraint, 'startdrag', () => {
          this.isDragging = true;  // Установка флага при початку перетягування
-        });
+       });
        Events.on(mouseConstraint, 'enddrag', () => {
          this.isDragging = false;  // Скидання флага після завершення перетягування
        });
@@ -166,7 +167,8 @@ export class MatterComponent implements AfterViewInit {
         if (!this.isDragging && window.innerWidth >= 1512) {
           event.preventDefault(); // Запобігає стандартній поведінці прокручування
 
-          // Оновлюємо цільову позицію прокручування
+          // Оновлюємо початкову та цільову позицію прокручування
+          this.initialScrollY = window.scrollY;
           this.scrollTarget = window.scrollY + event.deltaY;
           this.smoothScroll(); // Запускаємо плавний скролінг
         }
