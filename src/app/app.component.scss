@@ -814,6 +814,9 @@ align-items: center;
 gap: 9.499px;
 flex-shrink: 0;
   }
+  .block-phones {
+    margin-top: 260px;
+  }
 }
 
 @media screen and (min-width: 834px) and (max-width: 1511px) {
@@ -868,8 +871,8 @@ flex-shrink: 0;
   height: 140px;
   flex-shrink: 0;
   font-size: 16px;
-  left: 300px;
-  top: 40px;
+  left: 400px;
+  top: 130px;
 }
 .button-get-started:hover {
   top: 0px;
@@ -877,11 +880,24 @@ flex-shrink: 0;
 .block-phones {
   padding: 0;
   margin: 0 auto;
-  margin-top: 100px;
+  padding-top: 100px;
+padding-bottom: 40px;
 }
 .phones-img {
+  border-radius: 16px;
   height: 423px;
   width: 100%;
+}
+.where-thoughts-soar {
+  display: flex;
+  height: 84px;
+  padding: 22px 16px;
+  width: 214px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  font-size: 15px;
 }
 }
 
@@ -899,7 +915,7 @@ flex-shrink: 0;
 }
 .title {
   margin: 0;
-  margin-top: 48px;
+  margin-top: -24px;
   font-size: 24px;
   margin-bottom: 32px;
 }
@@ -923,6 +939,10 @@ flex-shrink: 0;
   flex-shrink: 0;
   margin-bottom: 46px;
   margin-right: 16px;
+}
+.main-text {
+  position: relative;
+  left: 0;
 }
 .main-text-img,
 .main-text-btn-get-started {
@@ -951,14 +971,14 @@ flex-shrink: 0;
 }
 .button-get-started {
   left: 170px;
-  top: 80px;
+  top: 90px;
   width: 113px;
   height: 113px;
   flex-shrink: 0;
   font-size: 12px;
 }
 .button-get-started:hover {
-  top: 48px;
+  top: 90px;
 }
 
 .about-us-section {
@@ -1128,6 +1148,21 @@ align-items: center;
     border: #000 1px solid;
     border-radius: 200px;
   }
+  .main-text {
+    position: relative;
+    left: 12px;
+    margin-top: 0px;
+  }
+  .main-container {
+    margin: 0 auto;
+  }
+  .button-get-started {
+    top: 100px;
+  }
+  .button-get-started:hover {
+    top: 100px;
+  }
+
 }
 
 @media screen and (min-width: 834px) and (max-width: 1511px) {
@@ -1483,6 +1518,7 @@ height: 442px;
 @media screen and (min-width: 834px) and (max-width: 1511px) {
   .services-section {
     padding: 0;
+    margin-bottom: 30px;
   }
   .services-title {
     margin-top: 60px;
@@ -1577,6 +1613,7 @@ height: 442px;
 @media screen and (min-width: 320px) and (max-width: 833px) {
   .services-section {
     padding: 0;
+    margin-bottom: 22px;
   }
 .services-section {
   margin-top: 30px;
@@ -2605,6 +2642,9 @@ flex-shrink: 0;
   .cards-img-snail {
     margin: 0 auto;
     margin-right: 70px;
+  }
+  .services-container {
+    margin-bottom: 24px;
   }
   // PORTFOLIO
   .swiper-slide,

@@ -70,9 +70,9 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  setActiveSection(section: string) {
-  this.currentSection = section;
-  this.scrollToSection(section);
+  setActiveSection(element: string) {
+  this.currentSection = element;
+  this.scrollToSection(element);
   }
 
   setupIntersectionObserver() {
