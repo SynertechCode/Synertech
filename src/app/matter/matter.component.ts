@@ -12,10 +12,6 @@ export class MatterComponent implements AfterViewInit {
   private runner = Runner.create();
   private render!: Render;
   private isDragging: boolean = false; // Флаг для перевірки перетягування
-  private scrollTarget: number = 0; // Цільова позиція прокручування
-  private currentScroll: number = 0; // Поточна позиція прокручування
-  private scrollSpeed: number = 0.2; // Швидкість прокручування
-  private initialScrollY: number = 0; // Початкова позиція прокручування перед зміною
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
@@ -159,31 +155,16 @@ export class MatterComponent implements AfterViewInit {
         Bodies.rectangle(width + 30, height / 2, 60, height, { isStatic: true })
       ]);
 
+      mouseConstraint.mouse.element.addEventListener("wheel", preventDefaultWheelEvent);
+
       Runner.run(this.runner, this.engine);
       Render.run(this.render);
-
-      // Слухач подій для управління плавним скролінгом сторінки
-      matterCanvasContainer.addEventListener('wheel', (event) => {
-        if (!this.isDragging && window.innerWidth >= 1512) {
-          event.preventDefault(); // Запобігає стандартній поведінці прокручування
-
-          // Оновлюємо початкову та цільову позицію прокручування
-          this.initialScrollY = window.scrollY;
-          this.scrollTarget = window.scrollY + event.deltaY;
-          this.smoothScroll(); // Запускаємо плавний скролінг
-        }
-      });
     } else {
       console.error("Canvas element not found or is not an HTMLCanvasElement");
     }
   }
-
-  // Функція для плавного скролінгу
-  smoothScroll() {
-    if (Math.abs(this.scrollTarget - this.currentScroll) > 1) { // Якщо різниця між поточною та цільовою позицією більше 1
-      this.currentScroll += (this.scrollTarget - this.currentScroll) * this.scrollSpeed; // Зміна поточної позиції
-      window.scrollTo(0, this.currentScroll); // Прокручування сторінки
-      requestAnimationFrame(() => this.smoothScroll()); // Викликаємо знову функцію для плавного скролінгу
-    }
-  }
 }
+function preventDefaultWheelEvent(this: HTMLElement, ev: WheelEvent) {
+  throw new Error('Function not implemented.');
+}
+
