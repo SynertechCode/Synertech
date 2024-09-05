@@ -61,6 +61,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private aboutUsTexts: NodeListOf<HTMLElement> | null = null;
 
+  @ViewChild('videoElement', { static: false }) videoElement!: ElementRef;
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
   private renderer: Renderer2,
@@ -148,7 +150,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     };
   };
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.isBrowser) {
       this.aboutUsSection = document.querySelector('.about-us-section');
       if (this.aboutUsSection) {
@@ -175,6 +177,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (section) {
       observer.observe(section);
     }
+
+    const video: HTMLVideoElement = this.videoElement.nativeElement;
+    video.src = '../assets/video-syner.mp4';
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.load();
+    video.play();
   }
 
 @HostListener('window:scroll', ['$event'])
