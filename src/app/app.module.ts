@@ -10,8 +10,46 @@ import { FormsModule } from "@angular/forms";
 import { FormComponent } from "./form/form.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 
-
+const customNotifierOptions: NotifierOptions = {
+  position: {
+    horizontal: {
+      position: 'middle',
+      distance: 12
+    },
+    vertical: {
+      position: 'top',
+      distance: 12
+    }
+  },
+  theme: 'material',
+  behaviour: {
+    autoHide: 3000,
+    onMouseover: 'pauseAutoHide',
+    showDismissButton: true,
+    stacking: 3
+  },
+  animations: {
+    enabled: true,
+    show: {
+      preset: 'slide',
+      speed: 300,
+      easing: 'ease'
+    },
+    hide: {
+      preset: 'fade',
+      speed: 300,
+      easing: 'ease',
+      offset: 50
+    },
+    shift: {
+      speed: 300,
+      easing: 'ease'
+    },
+    overlap: 150
+  }
+};
 
 @NgModule({
   imports: [
@@ -23,7 +61,9 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxMaskDirective 
+    NgxMaskDirective,
+    BrowserAnimationsModule,
+    NotifierModule.withConfig(customNotifierOptions)
   ],
   exports: [AppComponent,FormComponent],
   declarations: [AppComponent,FormComponent],

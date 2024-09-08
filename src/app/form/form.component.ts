@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { of, switchMap } from 'rxjs';
 import 'flatpickr/dist/flatpickr.min.css'; // Імпорт стилів
 import flatpickr from 'flatpickr';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
+  providers: [NotifierService],
 })
 export class FormComponent implements AfterViewInit {
   username: string = '';
@@ -15,6 +17,8 @@ export class FormComponent implements AfterViewInit {
   phone: string = ''; // Added phone number property
   date: string = ''; // Added date property
   project: string = '';
+
+  private readonly notifier: NotifierService;
 
   ngAfterViewInit() {
     flatpickr("#datetime", {
@@ -28,7 +32,9 @@ export class FormComponent implements AfterViewInit {
   @Input() isOpen: boolean = false;
   @Output() toggle: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private notifierService: NotifierService) {
+    this.notifier = notifierService;
+  }  
 
   toggleForm() {
     this.isOpen = !this.isOpen;
@@ -66,12 +72,13 @@ export class FormComponent implements AfterViewInit {
       {
         next: (response: any) => {
           console.log('Server response:', response);
-          alert('You have successfully registered!');
+          this.notifier.notify('success', 'You have successfully registered!');
+
           this.resetForm();
         },
         error: error => {
           console.error('Error:', error);
-          alert('An error occurred: ' + error.message);
+          this.notifier.notify('error', 'An error occurred: ' + error.message);
         }
       }
     );

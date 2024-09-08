@@ -335,3 +335,68 @@ line-height: 120%; /* 24px */
   left: 12px;
   transform: translateY(5px);
 }
+
+// NOTIFIER
+
+:host ::ng-deep .notifier__container {
+  position: absolute !important;
+  top: 12px !important;
+  transform: translateX(50%) !important;
+  z-index: 9999999999999 !important;
+  max-width: 430px !important;
+}
+
+:host ::ng-deep .notifier__notification {
+  background-color: #4CAF50 !important; /* Темно-сірий фон */
+  color: #fff !important; /* Білий текст */
+  padding: 15px 20px !important; /* Просторе поле */
+  border-radius: 8px !important; /* Округлі кути */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1) !important; /* М'яка тінь */
+  font-family: 'Nekst', sans-serif !important; /* Приємний сучасний шрифт */
+  font-size: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: all 0.6s ease !important;
+}
+
+:host ::ng-deep .notifier__notification.success {
+  background-color: #4CAF50 !important; /* Зелений для успішної нотифікації */
+}
+
+:host ::ng-deep .notifier__notification .notifier__notification--error .notifier__notification--material {
+  background-color: #F44336 !important; /* Червоний для помилки */
+}
+
+:host ::ng-deep .notifier__notification-button-icon {
+  display: none;
+}
+
+:host ::ng-deep .notifier__notification-button-icon:hover {
+  opacity: 0.8 !important; /* Легка прозорість при наведенні */
+}
+
+:host ::ng-deep .notifier__notification.show {
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+
+:host ::ng-deep .notifier__notification.hide {
+  transform: translateY(-20px) !important;
+  opacity: 0 !important;
+}
+
+@media screen and (min-width: 320px) and (max-width: 833px) {
+  :host ::ng-deep .notifier__notification {
+    width: 310px !important; /* Ширина 100% для заповнення екрану */
+    transform: translateX(-50%) !important;
+    left: 50% !important;
+    font-size: 16px !important;
+    padding: 18px 12px !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.6s ease !important;
+  }
+}
