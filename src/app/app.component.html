@@ -226,19 +226,19 @@
             <p class="text-interest">What interests you?</p>
           </div>
           <div class="list-click-block">
-            <div (click)="toggleForm()" class="img-click-block development-block">
+            <div (click)="toggleForm('development')" class="img-click-block development-block">
               <p class="img-click-text">development</p>
               <p class="development-text"><span>Front End</span> <span>Back End</span> <span>Mobile App</span></p>
             </div>
-            <div (click)="toggleForm()" class="img-click-block design-block">
+            <div (click)="toggleForm('design')" class="img-click-block design-block">
               <p class="img-click-text">design</p>
               <p class="design-text"><span>Creative</span> <span>Brand</span> <span>UI/UX</span></p>
             </div>
-            <div (click)="toggleForm()" class="img-click-block marketing-block">
+            <div (click)="toggleForm('marketing')" class="img-click-block marketing-block">
               <p class="img-click-text">marketing</p>
               <p class="marketing-text"><span>SMM</span> <span>Email Marketing</span> <span>Target</span></p>
             </div>
-          </div>
+          </div>          
           <div class="form-section">
             <div class="form-block">
             </div>
@@ -274,6 +274,6 @@
   </main>
 </div>
 
-<app-form [isOpen]="isOpen" (toggle)="toggleForm()"></app-form>
+<app-form [isOpen]="isOpen" (toggle)="toggleForm('')"></app-form>
 
 

@@ -82,7 +82,7 @@ video::-webkit-media-controls {
   transform: rotate(-90deg);
 
   transition: all 0.3s ease;
-  cursor: pointer;
+  cursor: default;
 }
 
 .nav-list:hover {

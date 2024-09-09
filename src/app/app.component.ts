@@ -63,6 +63,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @ViewChild('videoElement', { static: false }) videoElement!: ElementRef;
 
+  selectedSpecialty: string = '';
+
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
   private renderer: Renderer2,
@@ -285,7 +287,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
-  toggleForm() {
+  toggleForm(specialty: string): void {
+    this.selectedSpecialty = specialty;
     this.isOpen = !this.isOpen;
   }
 
