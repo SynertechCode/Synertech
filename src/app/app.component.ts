@@ -11,17 +11,17 @@ import { SwiperOptions, Swiper } from 'swiper';
     trigger('slideInLeft', [
       state('false', style({ opacity: 0, transform: 'translateX(-100%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('2000ms ease')),
+      transition('false => true', animate('3000ms ease')),
     ]),
     trigger('slideInRight', [
       state('false', style({ opacity: 0, transform: 'translateX(100%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('2000ms ease')),
+      transition('false => true', animate('3000ms ease')),
     ]),
     trigger('slideInLeftSoar', [
       state('false', style({ opacity: 0, transform: 'translateX(-70%)'})),
       state('true', style({ opacity: 1, transform: 'translateX(0)' })),
-      transition('false => true', animate('2000ms ease')),
+      transition('false => true', animate('3000ms ease')),
     ]),
   ]
 })
