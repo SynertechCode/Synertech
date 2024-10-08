@@ -14,7 +14,6 @@ import { UsersComponent } from './users/users.component';
 import { MainComponent } from './main/main.component';
 import { FormComponent } from './form/form.component';
 import { routes } from './app.routes'; // Додано маршрути
-import { UserService } from './users/user.service';
 
 const customNotifierOptions: NotifierOptions = {
   position: {

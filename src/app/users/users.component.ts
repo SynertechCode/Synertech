@@ -1,10 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent {
-  @Input() registeredUsers: any[] = [];  // Приймає список користувачів
+export class UsersComponent  {
 }

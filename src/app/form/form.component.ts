@@ -79,9 +79,7 @@ export class FormComponent implements AfterViewInit {
         next: (response: any) => {
           console.log('Server response:', response);
           this.notifier.notify('success', 'You have successfully registered!');
-          this.userRegistered.emit([postData]);
           this.resetForm();
-          console.log('Emitting user data:', postData); // Додано для перевірки
         },
         error: error => {
           console.error('Error:', error);
