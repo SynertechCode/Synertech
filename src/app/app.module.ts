@@ -4,13 +4,16 @@ import { AppComponent } from "./app.component";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgClass } from "@angular/common";
 import { SwiperModule } from "swiper/angular";
-import { RouterOutlet } from "@angular/router";
+import { RouterModule, RouterOutlet } from "@angular/router";  // Додано RouterModule
 import { MatterModule } from "./matter/matter.module";
 import { FormsModule } from "@angular/forms";
-import { FormComponent } from "./form/form.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
+import { UsersComponent } from './users/users.component';
+import { MainComponent } from './main/main.component';
+import { FormComponent } from './form/form.component';
+import { routes } from './app.routes';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -56,7 +59,7 @@ const customNotifierOptions: NotifierOptions = {
     BrowserModule,
     NgClass,
     SwiperModule,
-    RouterOutlet,
+    RouterModule.forRoot(routes), // Додано для маршрутизації
     MatterModule,
     FormsModule,
     HttpClientModule,
@@ -65,10 +68,8 @@ const customNotifierOptions: NotifierOptions = {
     BrowserAnimationsModule,
     NotifierModule.withConfig(customNotifierOptions)
   ],
-  exports: [AppComponent,FormComponent],
-  declarations: [AppComponent,FormComponent],
+  declarations: [AppComponent, FormComponent, UsersComponent, MainComponent],
   providers: [provideNgxMask()],
   bootstrap: [AppComponent]
 })
-
 export class AppModule { }

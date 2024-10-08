@@ -4,9 +4,9 @@ import { Component, HostListener, ViewChild, OnInit, AfterViewInit, Inject, PLAT
 import { SwiperOptions, Swiper } from 'swiper';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'main-root',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
   animations: [
     trigger('slideInLeft', [
       state('false', style({ opacity: 0, transform: 'translateX(-100%)'})),
@@ -25,7 +25,7 @@ import { SwiperOptions, Swiper } from 'swiper';
     ]),
   ]
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class MainComponent implements OnInit, AfterViewInit {
 
   sectionInView = false;
 

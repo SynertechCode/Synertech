@@ -18,6 +18,8 @@ export class FormComponent implements AfterViewInit {
   date: string = ''; // Додане поле "date"
   project: string = '';
   @Input() selectedSpecialty: string = '';
+  
+  @Output() userRegistered: EventEmitter<any[]> = new EventEmitter<any[]>(); // Output для передачі даних
 
   private readonly notifier: NotifierService;
 
@@ -77,6 +79,7 @@ export class FormComponent implements AfterViewInit {
         next: (response: any) => {
           console.log('Server response:', response);
           this.notifier.notify('success', 'You have successfully registered!');
+          this.userRegistered.emit([postData]);
           this.resetForm();
         },
         error: error => {
