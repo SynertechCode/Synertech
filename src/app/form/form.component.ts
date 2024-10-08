@@ -64,7 +64,7 @@ export class FormComponent implements AfterViewInit {
   
     console.log('Data being sent to the server:', postData);
   
-    this.http.post<{ message: string }>("https://synertech-back.onrender.com", postData, {
+    this.http.post<{ message: string }>("http://localhost:3000", postData, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -81,6 +81,7 @@ export class FormComponent implements AfterViewInit {
           this.notifier.notify('success', 'You have successfully registered!');
           this.userRegistered.emit([postData]);
           this.resetForm();
+          console.log('Emitting user data:', postData); // Додано для перевірки
         },
         error: error => {
           console.error('Error:', error);

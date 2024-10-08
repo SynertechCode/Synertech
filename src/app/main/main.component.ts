@@ -65,13 +65,6 @@ export class MainComponent implements OnInit, AfterViewInit {
 
   selectedSpecialty: string = '';
 
-  registeredUsers: any[] = [];  // Масив для збереження зареєстрованих користувачів
-
-  // Метод для обробки користувачів з форми
-  onUserRegistered(users: any[]): void {
-    this.registeredUsers = [...this.registeredUsers, ...users];  // Додаємо користувачів до загального списку
-  }
-
   constructor(@Inject(PLATFORM_ID) private platformId: Object,
   private renderer: Renderer2,
   private ngZone: NgZone,
@@ -298,4 +291,11 @@ export class MainComponent implements OnInit, AfterViewInit {
     this.isOpen = !this.isOpen;
   }
 
+  registeredUsers: any[] = []; // Ініціалізація масиву
+
+  onUserRegistered(userData: any[]) {
+    console.log('User registered event received:', userData); // Додано для перевірки
+    this.registeredUsers = [...this.registeredUsers, ...userData];
+    console.log('Updated registered users:', this.registeredUsers); // Додано для перевірки
+  }
 }
